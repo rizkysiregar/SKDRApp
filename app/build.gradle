@@ -41,4 +41,13 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+
+    // ktx navigation
+    def navigationKtxVersion = "2.5.3"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationKtxVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigationKtxVersion"
+
+    // lottie for animation
+    def lottieVersion = "5.0.3"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
 }
