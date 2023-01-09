@@ -7,4 +7,108 @@
     <string name="title_about">About</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fab_add_desc">navigate to add activity</string>
+    <string name="pilih_desa">Pilih Desa: </string>
+    <string name="minggu_ke">Minggu Ke- </string>
+    <string name="tv_umlah_penderita">Jumlah Penderita: </string>
+    <string name="edt_jumlah_penderita"></string>
+    <string name="tambah_data">Tambah Data</string>
+    <string name="nama_desa">Nama Desa:</string>
+    <string name="data_minggu_ke">Data Minggu Ke-</string>
+    <string name="nama_penyakit">Nama Penyakit</string>
+    <string name="jumlah_penderita">Jumlah Penderita:</string>
+    <string name="simpan">Simpan</string>
+
+    <string-array name="desa_array">
+        <item>Natar</item>
+        <item>Rejosari</item>
+        <item>Negara Ratu</item>
+        <item>Kalisari</item>
+        <item>Merak Batin</item>
+    </string-array>
+
+    <string-array name="penyakit_array">
+        <item>Diare Akut</item>
+        <item>Malaria Konfirmasi</item>
+        <item>Tersangka Demam Dangue</item>
+        <item>Pneumonia</item>
+        <item>Diare Berdarah ATAU Disentri</item>
+        <item>Tersangka Demam Tifoid</item>
+        <item>Sindrom Jaundice Akut</item>
+        <item>Tersangka Chikungunya</item>
+        <item>Tersangka Flu Burung pada Manusia</item>
+        <item>Tersangka Campak</item>
+        <item>Tersangka Difteri</item>
+        <item>Tersangka Pertussis</item>
+        <item>AFP (Lumpuh Layuh Mendadak)</item>
+        <item>Kasus Gigitan Hewan Penular Rabies</item>
+        <item>Tersangka Antraks</item>
+        <item>Tersangka Leptosipirosis</item>
+        <item>Tersangka Kolera</item>
+        <item>Klaster Penyakit yang tidak lazim</item>
+        <item>Tersangka Meningitis/Ensifalitis</item>
+        <item>Tersangka Tetanus Neonantorum</item>
+        <item>Tersangaka Tenanus</item>
+        <item>ILI (Infulenza Like Illness)</item>
+        <item>ILI (Tersangka HFMD (Hand, Foot, Mouth Disease)</item>
+    </string-array>
+
+    <string-array name="minngu_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+        <item>32</item>
+        <item>33</item>
+        <item>34</item>
+        <item>35</item>
+        <item>36</item>
+        <item>37</item>
+        <item>38</item>
+        <item>39</item>
+        <item>40</item>
+        <item>41</item>
+        <item>42</item>
+        <item>43</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+    </string-array>
+
+
 </resources>

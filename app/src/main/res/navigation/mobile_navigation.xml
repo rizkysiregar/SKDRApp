@@ -12,4 +12,11 @@
         tools:layout="@layout/fragment_home"
         />
 
+    <fragment
+        android:id="@+id/navigation_maps"
+        android:name="com.rizkysiregar.skdrapp.maps.MapsFragment"
+        android:label="@string/title_maps"
+        tools:layout="@layout/fragment_maps"
+        />
+
 </navigation>

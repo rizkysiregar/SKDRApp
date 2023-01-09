@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".add.AddDataActivity">
+
+    <TextView
+        android:id="@+id/label_minggu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/data_minggu_ke"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/sp_minggu"
+        android:layout_width="100dp"
+        android:layout_marginStart="8dp"
+        android:layout_height="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/label_minggu"
+        app:layout_constraintTop_toTopOf="@+id/label_minggu" />
+
+    <TextView
+        android:id="@+id/label_sp_desa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nama_desa"
+        app:layout_constraintStart_toStartOf="@+id/label_minggu"
+        app:layout_constraintTop_toTopOf="@+id/sp_desa" />
+
+    <Spinner
+        android:id="@+id/sp_desa"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/sp_minggu"
+        app:layout_constraintTop_toBottomOf="@+id/sp_minggu" />
+
+    <TextView
+        android:id="@+id/label_sp_penyakit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nama_penyakit"
+
+        app:layout_constraintStart_toStartOf="@+id/label_sp_desa"
+        app:layout_constraintTop_toTopOf="@+id/sp_penyakit" />
+
+    <Spinner
+        android:id="@+id/sp_penyakit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/sp_desa"
+        app:layout_constraintTop_toBottomOf="@+id/sp_desa" />
+
+    <TextView
+        android:id="@+id/label_sp_jumlah"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/jumlah_penderita"
+        app:layout_constraintBottom_toBottomOf="@+id/edt_jumlah_kunjungan"
+        app:layout_constraintStart_toStartOf="@+id/label_sp_penyakit"
+        app:layout_constraintTop_toTopOf="@+id/edt_jumlah_kunjungan" />
+
+    <EditText
+        android:id="@+id/edt_jumlah_kunjungan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:hint="Masukan Jumlah Penderita"
+        android:inputType="number"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/sp_penyakit"
+        app:layout_constraintTop_toBottomOf="@+id/sp_penyakit" />
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/simpan"
+        app:layout_constraintBottom_toBottomOf="@+id/edt_jumlah_kunjungan"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/edt_jumlah_kunjungan"
+        app:layout_constraintTop_toTopOf="@+id/edt_jumlah_kunjungan" />
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_jumlah_kunjungan">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_tambah_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/grey"
+            tools:listitem="@layout/list_item_tambah_data" />
+
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
