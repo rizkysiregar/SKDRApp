@@ -1,9 +1,9 @@
 package com.rizkysiregar.skdrapp.core.domain.repository
 
-import com.rizkysiregar.skdrapp.core.data.Resource
+import androidx.lifecycle.LiveData
 import com.rizkysiregar.skdrapp.core.domain.model.Skdr
-import kotlinx.coroutines.flow.Flow
 
 interface ISkdrRepository {
-    fun getAllData(): Flow<Resource<Skdr>>
+    fun getAllData(): LiveData<List<Skdr>>
+    fun insertData(skdr: Skdr)
 }

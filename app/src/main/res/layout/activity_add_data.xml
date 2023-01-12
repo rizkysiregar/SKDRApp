@@ -65,12 +65,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/jumlah_penderita"
-        app:layout_constraintBottom_toBottomOf="@+id/edt_jumlah_kunjungan"
+        app:layout_constraintBottom_toBottomOf="@+id/edt_jumlah_pasien"
         app:layout_constraintStart_toStartOf="@+id/label_sp_penyakit"
-        app:layout_constraintTop_toTopOf="@+id/edt_jumlah_kunjungan" />
+        app:layout_constraintTop_toTopOf="@+id/edt_jumlah_pasien" />
 
     <EditText
-        android:id="@+id/edt_jumlah_kunjungan"
+        android:id="@+id/edt_jumlah_pasien"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -86,10 +86,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/simpan"
-        app:layout_constraintBottom_toBottomOf="@+id/edt_jumlah_kunjungan"
+        app:layout_constraintBottom_toBottomOf="@+id/edt_jumlah_pasien"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/edt_jumlah_kunjungan"
-        app:layout_constraintTop_toTopOf="@+id/edt_jumlah_kunjungan" />
+        app:layout_constraintStart_toEndOf="@+id/edt_jumlah_pasien"
+        app:layout_constraintTop_toTopOf="@+id/edt_jumlah_pasien" />
 
 
     <LinearLayout
@@ -101,7 +101,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_jumlah_kunjungan">
+        app:layout_constraintTop_toBottomOf="@+id/edt_jumlah_pasien">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_tambah_data"

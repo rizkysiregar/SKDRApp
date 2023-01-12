@@ -24,6 +24,6 @@ data class SkdrEntity(
     val kodePenyakit: String,
 
     @ColumnInfo(name = "jumlah_penderita")
-    val jumlahPenderita: String
+    val jumlahPenderita: Int
 
 )

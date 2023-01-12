@@ -7,7 +7,7 @@ import kotlinx.parcelize.Parcelize
 data class Skdr(
     val id: Int,
     val namaDesa: String,
-    val periodeMinggu: String,
+    val periodeMinggu: Int,
     val namaPenyakit: String,
     val kodePenyakit: String,
     val jumlahPenderita: Int

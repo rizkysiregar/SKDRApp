@@ -71,4 +71,10 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
     implementation 'androidx.room:room-ktx:2.4.3'
     api "androidx.lifecycle:lifecycle-livedata-ktx:2.5.1"
+
+    // koin
+    def koin_version= "3.2.2"
+    def koin_android_version= "3.3.0"
+    implementation "io.insert-koin:koin-core:$koin_version"
+    implementation "io.insert-koin:koin-android:$koin_android_version"
 }
