@@ -6,11 +6,16 @@ import android.widget.ArrayAdapter
 import com.rizkysiregar.skdrapp.R
 import com.rizkysiregar.skdrapp.core.domain.model.Skdr
 import com.rizkysiregar.skdrapp.databinding.ActivityAddDataBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AddDataActivity : AppCompatActivity() {
 
+    // layout binding
     lateinit var binding : ActivityAddDataBinding
+
+    // view model
     private val addViewModel : AddViewModel by viewModel()
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddDataBinding.inflate(layoutInflater)
