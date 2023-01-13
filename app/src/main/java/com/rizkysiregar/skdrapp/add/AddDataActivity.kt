@@ -50,13 +50,17 @@ class AddDataActivity : AppCompatActivity() {
 
         // insert data
         binding.btnSubmit.setOnClickListener {
-            val namaDesa = binding.spDesa.selectedItem.toString()
-            val periodeMinggu = binding.spMinggu.selectedItem.toString().toInt()
-            val namaPenyakit = binding.spPenyakit.selectedItem.toString()
-            val kodePenyakit = "A"
-            val jumlahPenderita = binding.edtJumlahPasien.text.toString().toInt()
-            val skdr = Skdr(0,namaDesa,periodeMinggu,namaPenyakit,kodePenyakit,jumlahPenderita)
-            addViewModel.insertData(skdr)
+            setData()
         }
+    }
+
+    private fun setData(){
+        val namaDesa = binding.spDesa.selectedItem.toString()
+        val periodeMinggu = binding.spMinggu.selectedItem.toString().toInt()
+        val namaPenyakit = binding.spPenyakit.selectedItem.toString()
+        val kodePenyakit = "A"
+        val jumlahPenderita = binding.edtJumlahPasien.text.toString().toInt()
+        val skdr = Skdr(0,namaDesa,periodeMinggu,namaPenyakit,kodePenyakit,jumlahPenderita)
+        addViewModel.insertData(skdr)
     }
 }
