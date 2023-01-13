@@ -11,7 +11,7 @@ import com.rizkysiregar.skdrapp.core.data.entity.SkdrEntity
 interface SkdrDao {
 
     // query get all data from table
-    @Query("SELECT * FROM skdr")
+    @Query("SELECT * FROM skdr ORDER BY id DESC")
     fun getAllData(): LiveData<List<SkdrEntity>>
 
     // query insert ke db

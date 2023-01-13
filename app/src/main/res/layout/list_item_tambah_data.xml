@@ -14,23 +14,51 @@
         android:background="@color/grey"
         >
 
+
+        <TextView
+            android:id="@+id/label_kode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="28dp"
+            android:background="@drawable/shape_layout_corners_with_color"
+            android:padding="3dp"
+            android:text="@string/kode"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_label_periode_minggu"
+            app:layout_constraintEnd_toStartOf="@+id/tv_label_periode_minggu"
+            app:layout_constraintTop_toTopOf="@+id/tv_label_periode_minggu" />
+
         <TextView
             android:id="@+id/tv_label_periode_minggu"
             android:layout_width="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
+            android:padding="3dp"
             android:background="@drawable/shape_layout_corners_with_color"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="8dp"
             android:text="@string/periode_minggu"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/tv_kode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/purple_200"
+            android:textStyle="bold"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/label_kode"
+            app:layout_constraintStart_toStartOf="@+id/label_kode"
+            app:layout_constraintTop_toBottomOf="@+id/label_kode"
+            tools:text="A" />
+
+        <TextView
             android:id="@+id/tv_periode_minggu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/number_minggu"
+            tools:text="1"
             android:textStyle="bold"
             android:textColor="@color/purple_200"
             android:textSize="36sp"
@@ -76,7 +104,7 @@
 
 
         <TextView
-            android:id="@+id/tb_add_nama_penyakit"
+            android:id="@+id/tv_add_nama_penyakit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/malaria_mix"
@@ -100,6 +128,7 @@
 
 
         <TextView
+            android:id="@+id/tv_jumlah_penderita"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="12 Orang"

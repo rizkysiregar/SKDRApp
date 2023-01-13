@@ -7,4 +7,6 @@ import com.rizkysiregar.skdrapp.core.domain.usecase.SkdrUseCase
 class AddViewModel(private val skdrUseCase: SkdrUseCase): ViewModel() {
     fun insertData(skdr: Skdr) =
         skdrUseCase.insertNewData(skdr)
+
+    val getAllData = skdrUseCase.getAllData()
 }

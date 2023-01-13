@@ -21,6 +21,7 @@
     <string name="malaria_mix">Malaria Mix</string>
     <string name="periode_minggu">Periode Minggu</string>
     <string name="number_minggu">1</string>
+    <string name="kode">Kode</string>
 
     <string-array name="desa_array">
         <item>Natar</item>

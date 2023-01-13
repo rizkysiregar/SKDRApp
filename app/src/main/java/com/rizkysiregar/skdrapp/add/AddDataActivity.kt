@@ -3,8 +3,10 @@ package com.rizkysiregar.skdrapp.add
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.rizkysiregar.skdrapp.R
 import com.rizkysiregar.skdrapp.core.domain.model.Skdr
+import com.rizkysiregar.skdrapp.core.ui.SkdrAdapter
 import com.rizkysiregar.skdrapp.databinding.ActivityAddDataBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -20,6 +22,7 @@ class AddDataActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddDataBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         ArrayAdapter.createFromResource(
             this,
@@ -52,9 +55,18 @@ class AddDataActivity : AppCompatActivity() {
         binding.btnSubmit.setOnClickListener {
             setData()
         }
-    }
 
-    private fun getRecentData(){
+        // adapter
+        val skdrAdapter = SkdrAdapter()
+        addViewModel.getAllData.observe(this){
+            skdrAdapter.setData(it)
+        }
+
+        with(binding.rvTambahData){
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = skdrAdapter
+        }
 
     }
 
