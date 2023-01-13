@@ -54,6 +54,10 @@ class AddDataActivity : AppCompatActivity() {
         }
     }
 
+    private fun getRecentData(){
+
+    }
+
     private fun setData(){
         val namaDesa = binding.spDesa.selectedItem.toString()
         val periodeMinggu = binding.spMinggu.selectedItem.toString().toInt()

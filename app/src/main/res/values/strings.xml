@@ -15,9 +15,12 @@
     <string name="tambah_data">Tambah Data</string>
     <string name="nama_desa">Nama Desa:</string>
     <string name="data_minggu_ke">Data Minggu Ke-</string>
-    <string name="nama_penyakit">Nama Penyakit</string>
-    <string name="jumlah_penderita">Jumlah Penderita:</string>
+    <string name="nama_penyakit">Nama Penyakit: </string>
+    <string name="jumlah_penderita">Jumlah Penderita: </string>
     <string name="simpan">Simpan</string>
+    <string name="malaria_mix">Malaria Mix</string>
+    <string name="periode_minggu">Periode Minggu</string>
+    <string name="number_minggu">1</string>
 
     <string-array name="desa_array">
         <item>Natar</item>

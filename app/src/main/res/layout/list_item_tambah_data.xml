@@ -1,31 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_marginBottom="8dp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    app:cardCornerRadius="2dp"
+    android:id="@+id/add_card_view">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_list_data"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="100dp"
+        android:background="@color/grey"
+        >
 
-       <androidx.constraintlayout.widget.ConstraintLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_label_periode_minggu"
+            android:layout_width="wrap_content"
+            android:textColor="@color/black"
+            android:background="@drawable/shape_layout_corners_with_color"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/periode_minggu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text=""
-               />
+        <TextView
+            android:id="@+id/tv_periode_minggu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/number_minggu"
+            android:textStyle="bold"
+            android:textColor="@color/purple_200"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_label_periode_minggu"
+            app:layout_constraintStart_toStartOf="@+id/tv_label_periode_minggu"
+            app:layout_constraintTop_toBottomOf="@+id/tv_label_periode_minggu" />
 
-       </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_add_label_desa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nama_desa"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_list_add_nama_desa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:fontFamily="sans-serif-light"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_add_label_desa"
+            app:layout_constraintStart_toEndOf="@+id/tv_add_label_desa"
+            app:layout_constraintTop_toTopOf="@+id/tv_add_label_desa"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="NATAR" />
+
+        <TextView
+            android:id="@+id/tv_label_nama_penyakit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nama_penyakit"
+            android:textColor="@color/black"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/tv_add_label_desa"
+            app:layout_constraintTop_toBottomOf="@+id/tv_add_label_desa" />
 
 
-    </androidx.cardview.widget.CardView>
+        <TextView
+            android:id="@+id/tb_add_nama_penyakit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/malaria_mix"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_label_nama_penyakit"
+            app:layout_constraintStart_toStartOf="@+id/tv_list_add_nama_desa"
+            app:layout_constraintTop_toTopOf="@+id/tv_label_nama_penyakit" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tv_label_jumlah_penderita"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@string/jumlah_penderita"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/tv_label_nama_penyakit"
+            app:layout_constraintTop_toBottomOf="@+id/tv_label_nama_penyakit" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12 Orang"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/black"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_label_jumlah_penderita"
+            app:layout_constraintStart_toEndOf="@+id/tv_label_jumlah_penderita"
+            app:layout_constraintTop_toTopOf="@+id/tv_label_jumlah_penderita" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.cardview.widget.CardView>
