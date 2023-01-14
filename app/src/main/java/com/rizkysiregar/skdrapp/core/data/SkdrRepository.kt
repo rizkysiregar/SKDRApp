@@ -25,11 +25,14 @@ class SkdrRepository constructor(
     }
 
     override fun getAllDataPenyakit(): LiveData<List<DataPenyakit>> {
-        TODO("Not yet implemented")
+        return Transformations.map(localDataSource.getAllDataPenyakit()){
+            DataMapper.mapDataPenyakitEntitiesToDomain(it)
+        }
     }
 
     override fun insertData(dataPenyakit: DataPenyakit) {
-        TODO("Not yet implemented")
+        val dataPenyakit = DataMapper.mapDataPenyakitDomainToEntity(dataPenyakit)
+        appExecutors.diskIO().execute { localDataSource.insertDataPenyakit(dataPenyakit) }
     }
 
 
