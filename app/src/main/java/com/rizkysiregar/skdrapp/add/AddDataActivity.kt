@@ -23,7 +23,6 @@ class AddDataActivity : AppCompatActivity() {
         binding = ActivityAddDataBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         ArrayAdapter.createFromResource(
             this,
             R.array.desa_array,
@@ -74,8 +73,34 @@ class AddDataActivity : AppCompatActivity() {
         val namaDesa = binding.spDesa.selectedItem.toString()
         val periodeMinggu = binding.spMinggu.selectedItem.toString().toInt()
         val namaPenyakit = binding.spPenyakit.selectedItem.toString()
-        val kodePenyakit = "A"
         val jumlahPenderita = binding.edtJumlahPasien.text.toString().toInt()
+        var kodePenyakit = ""
+        when(namaPenyakit){
+            "Diare Akut" -> kodePenyakit = "A"
+            "Malaria Konfirmasi" -> kodePenyakit = "B"
+            "Tersangka Demam Dengue" -> kodePenyakit = "C"
+            "Pneumonia" -> kodePenyakit = "D"
+            "Diare Berdarah ATAU Disentri" -> kodePenyakit = "E"
+            "Tersangka Demam Tifoid" -> kodePenyakit = "F"
+            "Sindrom Jaundice Akut" -> kodePenyakit = "G"
+            "Tersangka Chikungunya" -> kodePenyakit = "H"
+            "Tersangka Flu Burung pada Manusia" -> kodePenyakit = "J"
+            "Tersangka Campak" -> kodePenyakit = "K"
+            "Tersangka Difteri" -> kodePenyakit = "L"
+            "Tersangka Pertussis" -> kodePenyakit = "M"
+            "AFP (Lumpuh Layuh Mendadak)" -> kodePenyakit = "N"
+            "Kasus Gigitan Hewan Penular Rabies" -> kodePenyakit = "P"
+            "Tersangka Antraks" -> kodePenyakit = "Q"
+            "Tersangka Leptospirosis" -> kodePenyakit = "R"
+            "Tersangka Kolera" -> kodePenyakit = "S"
+            "Klaster Penyakit yang tidak lazim" -> kodePenyakit = "T"
+            "Tersangka Meningitis/Ensefalitis" -> kodePenyakit = "U"
+            "Tersangka Tetanus Neonatorum" -> kodePenyakit = "V"
+            "Tersangka Tetanus" -> kodePenyakit = "W"
+            "ILI (Influenza Like Ilness)" -> kodePenyakit = "Y"
+            "ILI (Tersangka HFMD (Hand, Foot, Mouth Disease)" -> kodePenyakit = "Z"
+        }
+
         val skdr = Skdr(0,namaDesa,periodeMinggu,namaPenyakit,kodePenyakit,jumlahPenderita)
         addViewModel.insertData(skdr)
     }

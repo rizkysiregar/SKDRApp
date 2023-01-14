@@ -31,7 +31,6 @@ class SkdrAdapter: RecyclerView.Adapter<SkdrAdapter.ListViewHolder>() {
     }
 
 
-
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         private val binding = ListItemTambahDataBinding.bind(itemView)
         fun bind(data: Skdr) {
