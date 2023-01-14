@@ -15,12 +15,12 @@ class SkdrRepository constructor(
 ) : ISkdrRepository, IDataPenyakitRepository{
     override fun getAllData(): LiveData<List<Skdr>> {
         return Transformations.map(localDataSource.getAllData()){
-            DataMapper.mapEntitiesToDomain(it)
+            DataMapper.mapSkdrEntitiesToSkdrDomain(it)
         }
     }
 
     override fun insertData(skdr: Skdr) {
-        val dataSkdr = DataMapper.mapDomainToEntity(skdr)
+        val dataSkdr = DataMapper.mapSkdrDomainToSkdrEntity(skdr)
         appExecutors.diskIO().execute { localDataSource.insertSkdr(dataSkdr) }
     }
 
