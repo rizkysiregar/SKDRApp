@@ -75,6 +75,8 @@ class AddDataActivity : AppCompatActivity() {
         val namaPenyakit = binding.spPenyakit.selectedItem.toString()
         val jumlahPenderita = binding.edtJumlahPasien.text.toString().toInt()
         var kodePenyakit = ""
+
+
         when(namaPenyakit){
             "Diare Akut" -> kodePenyakit = "A"
             "Malaria Konfirmasi" -> kodePenyakit = "B"
@@ -100,6 +102,7 @@ class AddDataActivity : AppCompatActivity() {
             "ILI (Influenza Like Ilness)" -> kodePenyakit = "Y"
             "ILI (Tersangka HFMD (Hand, Foot, Mouth Disease)" -> kodePenyakit = "Z"
         }
+
 
         val skdr = Skdr(0,namaDesa,periodeMinggu,namaPenyakit,kodePenyakit,jumlahPenderita)
         addViewModel.insertData(skdr)

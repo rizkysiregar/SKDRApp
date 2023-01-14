@@ -14,22 +14,15 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.rizkysiregar.skdrapp.R
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MapsFragment : Fragment() {
 
+
+
+    private val mapsViewModel : MapsViewModel by viewModel()
     private val callback = OnMapReadyCallback { googleMap ->
-        /**
-         * Manipulates the map once available.
-         * This callback is triggered when the map is ready to be used.
-         * This is where we can add markers or lines, add listeners or move the camera.
-         * In this case, we just add a marker near Sydney, Australia.
-         * If Google Play services is not installed on the device, the user will be prompted to
-         * install it inside the SupportMapFragment. This method will only be triggered once the
-         * user has installed Google Play services and returned to the app.
-         */
-        val sydney = LatLng(-34.0, 151.0)
-        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        showMarker(googleMap)
     }
 
     override fun onCreateView(
@@ -44,5 +37,32 @@ class MapsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
+
+
+    }
+
+    private fun showMarker(mMap: GoogleMap){
+
+        mapsViewModel.getAllData.observe(this){
+            mMap.uiSettings.isZoomControlsEnabled = true
+            mMap.uiSettings.isIndoorLevelPickerEnabled = true
+            mMap.uiSettings.isCompassEnabled = true
+            mMap.uiSettings.isMapToolbarEnabled = true
+
+            it.forEach { map ->
+                var markerLocation = LatLng(-5.244242361783416, 105.22078387730636)
+                when(map.namaPenyakit){
+                    "Natar" -> markerLocation = LatLng(-5.241846069680059, 105.24069875772317)
+                    "Negara Ratu" -> markerLocation = LatLng(-5.316462360596307, 105.1775949791341)
+                    "Rejosari" -> markerLocation = LatLng(-5.285764622848798, 105.15480686620937)
+                    "Kalisari" -> markerLocation = LatLng(-5.306940725477708, 105.21995813845814)
+                    "Merak Batin" -> markerLocation = LatLng(-5.308845205219369, 105.21625482783304)
+                }
+                mMap.addMarker(MarkerOptions().position(markerLocation).title(map.namaDesa))
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(markerLocation))
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(markerLocation, 10f))
+            }
+        }
+
     }
 }

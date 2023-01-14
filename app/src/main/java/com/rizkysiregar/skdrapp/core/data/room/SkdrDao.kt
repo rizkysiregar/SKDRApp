@@ -28,4 +28,8 @@ interface SkdrDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertDataPenyakit(dataPenyakit: DataPenyakitEntity)
 
+    // getAll data Natar
+    @Query("SELECT * From skdr WHERE nama_desa = 'Natar'")
+    fun getDataNatar(): LiveData<List<SkdrEntity>>
+
 }

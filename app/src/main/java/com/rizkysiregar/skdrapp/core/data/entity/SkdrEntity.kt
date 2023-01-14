@@ -25,5 +25,4 @@ data class SkdrEntity(
 
     @ColumnInfo(name = "jumlah_penderita")
     val jumlahPenderita: Int
-
 )

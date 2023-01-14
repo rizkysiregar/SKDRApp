@@ -17,13 +17,16 @@ import com.github.mikephil.charting.formatter.PercentFormatter
 import com.github.mikephil.charting.utils.MPPointF
 import com.rizkysiregar.skdrapp.R
 import com.rizkysiregar.skdrapp.add.AddDataActivity
+import com.rizkysiregar.skdrapp.core.domain.model.Skdr
 import com.rizkysiregar.skdrapp.databinding.FragmentHomeBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
 
     // binding delegate
     private var _binding : FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private val homeViewModel : HomeViewModel by viewModel()
 
     // chart init
     lateinit var pieChart: PieChart
@@ -46,10 +49,16 @@ class HomeFragment : Fragment() {
 
         // pie chart setting
         pieChart = binding.pieChart
-        showChart(pieChart)
+        homeViewModel.getAllData.observe(requireActivity()){
+            val arrJumlahPasien: ArrayList<PieEntry> = ArrayList()
+            it.forEach { skdr ->
+               arrJumlahPasien.add(PieEntry(skdr.jumlahPenderita.toFloat()))
+            }
+            showChart(pieChart, arrJumlahPasien)
+        }
     }
 
-    private fun showChart(pieChart: PieChart){
+    private fun showChart(pieChart: PieChart, entries: ArrayList<PieEntry>){
         // on below line we are initializing our
         // variable with their ids.
 
@@ -93,13 +102,6 @@ class HomeFragment : Fragment() {
         pieChart.legend.isEnabled = false
         pieChart.setEntryLabelColor(Color.WHITE)
         pieChart.setEntryLabelTextSize(12f)
-
-        // on below line we are creating array list and
-        // adding data to it to display in pie chart
-        val entries: ArrayList<PieEntry> = ArrayList()
-        entries.add(PieEntry(70f))
-        entries.add(PieEntry(20f))
-        entries.add(PieEntry(10f))
 
         // on below line we are setting pie data set
         val dataSet = PieDataSet(entries, "Mobile OS")
