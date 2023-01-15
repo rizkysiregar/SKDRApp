@@ -17,7 +17,7 @@
             android:id="@+id/tv_rekapitulasi_mingguan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="@font/roboto_regular"
             android:text="1"
             android:textColor="@color/black"
             android:textSize="26sp"

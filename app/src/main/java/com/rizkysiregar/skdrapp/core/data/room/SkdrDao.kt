@@ -8,6 +8,7 @@ import androidx.room.Query
 import com.rizkysiregar.skdrapp.core.data.entity.DataPenyakitEntity
 import com.rizkysiregar.skdrapp.core.data.entity.SkdrEntity
 import com.rizkysiregar.skdrapp.core.domain.model.DataPenyakit
+import com.rizkysiregar.skdrapp.core.domain.model.Skdr
 
 @Dao
 interface SkdrDao {
@@ -28,8 +29,9 @@ interface SkdrDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertDataPenyakit(dataPenyakit: DataPenyakitEntity)
 
-    // getAll data Natar
-    @Query("SELECT * From skdr WHERE nama_desa = 'Natar'")
-    fun getDataNatar(): LiveData<List<SkdrEntity>>
+   // getDataByPeriode
+    @Query("SELECT * FROM skdr WHERE periode_minggu = :periode")
+    fun getDataByPeriode(periode: Int): LiveData<List<SkdrEntity>>
+
 
 }

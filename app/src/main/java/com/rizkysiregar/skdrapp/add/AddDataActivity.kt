@@ -68,7 +68,6 @@ class AddDataActivity : AppCompatActivity() {
             setHasFixedSize(true)
             adapter = skdrAdapter
         }
-
     }
 
     private fun setData(){

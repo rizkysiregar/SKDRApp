@@ -24,6 +24,12 @@ class SkdrRepository constructor(
         appExecutors.diskIO().execute { localDataSource.insertSkdr(dataSkdr) }
     }
 
+    override fun getAllDataByPeriodic(periodic: Int): LiveData<List<Skdr>> {
+        return Transformations.map(localDataSource.getAllDataByPeriodic(periodic)){
+            DataMapper.mapSkdrEntitiesToSkdrDomain(it)
+        }
+    }
+
     override fun getAllDataPenyakit(): LiveData<List<DataPenyakit>> {
         return Transformations.map(localDataSource.getAllDataPenyakit()){
             DataMapper.mapDataPenyakitEntitiesToDomain(it)
