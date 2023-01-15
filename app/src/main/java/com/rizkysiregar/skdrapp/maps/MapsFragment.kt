@@ -18,8 +18,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MapsFragment : Fragment() {
 
-
-
     private val mapsViewModel : MapsViewModel by viewModel()
     private val callback = OnMapReadyCallback { googleMap ->
         showMarker(googleMap)
@@ -42,16 +40,15 @@ class MapsFragment : Fragment() {
     }
 
     private fun showMarker(mMap: GoogleMap){
-
+        mMap.uiSettings.isZoomControlsEnabled = true
+        mMap.uiSettings.isIndoorLevelPickerEnabled = true
+        mMap.uiSettings.isCompassEnabled = true
+        mMap.uiSettings.isMapToolbarEnabled = true
+        var markerLocation = LatLng(-5.244242361783416, 105.22078387730636)
         mapsViewModel.getAllData.observe(this){
-            mMap.uiSettings.isZoomControlsEnabled = true
-            mMap.uiSettings.isIndoorLevelPickerEnabled = true
-            mMap.uiSettings.isCompassEnabled = true
-            mMap.uiSettings.isMapToolbarEnabled = true
-
             it.forEach { map ->
-                var markerLocation = LatLng(-5.244242361783416, 105.22078387730636)
-                when(map.namaPenyakit){
+
+                when(map.namaDesa){
                     "Natar" -> markerLocation = LatLng(-5.241846069680059, 105.24069875772317)
                     "Negara Ratu" -> markerLocation = LatLng(-5.316462360596307, 105.1775949791341)
                     "Rejosari" -> markerLocation = LatLng(-5.285764622848798, 105.15480686620937)
