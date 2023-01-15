@@ -19,7 +19,7 @@
         tools:targetApi="31">
         <activity
             android:name=".add.AddDataActivity"
-            android:exported="false">
+            android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -41,7 +41,8 @@
 
         <activity
             android:name=".splash.SplashActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.SKDRApp.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

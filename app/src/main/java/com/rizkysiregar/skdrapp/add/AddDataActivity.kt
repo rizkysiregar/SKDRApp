@@ -1,10 +1,8 @@
 package com.rizkysiregar.skdrapp.add
 
-import android.content.Context
-import android.inputmethodservice.InputMethodService
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -115,5 +113,5 @@ class AddDataActivity : AppCompatActivity() {
             Toast.makeText(this,"Error: $e", Toast.LENGTH_LONG).show()
         }
     }
-    
+
 }

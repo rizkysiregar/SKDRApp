@@ -42,6 +42,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         // fab event click
         binding.fabAdd.setOnClickListener {
             startActivity(Intent(requireActivity(), AddDataActivity::class.java))
@@ -129,7 +130,7 @@ class HomeFragment : Fragment() {
         data.setValueTextSize(15f)
         data.setValueTypeface(Typeface.DEFAULT_BOLD)
         data.setValueTextColor(Color.WHITE)
-        pieChart.setData(data)
+        pieChart.data = data
 
         // undo all highlights
         pieChart.highlightValues(null)
