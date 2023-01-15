@@ -1,8 +1,12 @@
 package com.rizkysiregar.skdrapp.add
 
+import android.content.Context
+import android.inputmethodservice.InputMethodService
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rizkysiregar.skdrapp.R
 import com.rizkysiregar.skdrapp.core.domain.model.Skdr
@@ -103,8 +107,13 @@ class AddDataActivity : AppCompatActivity() {
             "ILI (Tersangka HFMD (Hand, Foot, Mouth Disease)" -> kodePenyakit = "Z"
         }
 
-
-        val skdr = Skdr(0,namaDesa,periodeMinggu,namaPenyakit,kodePenyakit,jumlahPenderita)
-        addViewModel.insertData(skdr)
+        try {
+            val skdr = Skdr(0,namaDesa,periodeMinggu,namaPenyakit,kodePenyakit,jumlahPenderita)
+            addViewModel.insertData(skdr)
+            Toast.makeText(this,"Success", Toast.LENGTH_SHORT).show()
+        }catch(e: Exception){
+            Toast.makeText(this,"Error: $e", Toast.LENGTH_LONG).show()
+        }
     }
+    
 }
