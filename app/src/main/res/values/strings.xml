@@ -22,6 +22,9 @@
     <string name="periode_minggu">Periode Minggu</string>
     <string name="number_minggu">1</string>
     <string name="kode">Kode</string>
+    <string name="recap">Recap</string>
+    <string name="nomor_tujuan">Nomor Tujuan:</string>
+    <string name="format_laporan">Format Laporan</string>
 
     <string-array name="desa_array">
         <item>Natar</item>

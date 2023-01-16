@@ -9,7 +9,7 @@
         android:icon="@drawable/ic_baseline_map_24"
         android:title="@string/title_maps" />
     <item
-        android:id="@+id/navigation_about"
-        android:icon="@drawable/ic_outline_more_24"
-        android:title="@string/title_about" />
+        android:id="@+id/navigation_recapitulation"
+        android:icon="@drawable/ic_message"
+        android:title="@string/recap" />
 </menu>

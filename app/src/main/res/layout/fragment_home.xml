@@ -15,7 +15,7 @@
             android:id="@+id/linearLayout2"
             android:layout_marginTop="8dp"
             android:background="@color/grey"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -51,14 +51,11 @@
                 android:id="@+id/btn_cari_periodik"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="16dp"
                 android:text="Cari"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_cari"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/sp_periodik"
-                app:layout_constraintTop_toTopOf="@+id/sp_periodik" />
+                app:layout_constraintTop_toTopOf="@+id/tv_cari" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

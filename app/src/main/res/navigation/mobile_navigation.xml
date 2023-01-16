@@ -19,4 +19,11 @@
         tools:layout="@layout/fragment_maps"
         />
 
+    <fragment
+        android:id="@+id/navigation_recapitulation"
+        android:name="com.rizkysiregar.skdrapp.recapitulation.RecapitulationFragment"
+        android:label="Recapitulation"
+        tools:layout="@layout/fragment_recapitulation"
+        />
+
 </navigation>
