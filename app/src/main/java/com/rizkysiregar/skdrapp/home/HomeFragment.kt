@@ -69,21 +69,27 @@ class HomeFragment : Fragment() {
         }
         // pie chart setting
         pieChart = binding.pieChart
-        homeViewModel.getAllData.observe(requireActivity()){
-            val arrJumlahPasien: ArrayList<PieEntry> = ArrayList()
-            it.forEach { skdr ->
-               arrJumlahPasien.add(PieEntry(skdr.jumlahPenderita.toFloat()))
-            }
-            showChart(pieChart, arrJumlahPasien)
+        homeViewModel.skdr.observe(requireActivity()){
+            showChart(pieChart,it)
         }
 
+        homeViewModel.setSkdrPeriodic(1)
+        binding.btnCariPeriodik.setOnClickListener {
+            var periodik = binding.spPeriodik.selectedItem.toString().toInt()
+            homeViewModel.setSkdrPeriodic(periodik)
+        }
         homeViewModel.skdr.observe(requireActivity()){
             skdrAdapter.setData(it)
         }
-        homeViewModel.setSkdrPeriodic(1)
+
     }
 
-    private fun showChart(pieChart: PieChart, entries: ArrayList<PieEntry>){
+    private fun showChart(pieChart: PieChart, listData: List<Skdr>){
+        val arrJumlahPasien: ArrayList<PieEntry> = ArrayList()
+        listData.forEach {
+            arrJumlahPasien.add(PieEntry(it.jumlahPenderita.toFloat()))
+        }
+
         // on below line we are initializing our
         // variable with their ids.
 
@@ -129,7 +135,7 @@ class HomeFragment : Fragment() {
         pieChart.setEntryLabelTextSize(12f)
 
         // on below line we are setting pie data set
-        val dataSet = PieDataSet(entries, "Mobile OS")
+        val dataSet = PieDataSet(arrJumlahPasien, "Mobile OS")
 
         // on below line we are setting icons.
         dataSet.setDrawIcons(false)
