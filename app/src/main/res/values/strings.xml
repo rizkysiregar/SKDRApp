@@ -26,6 +26,7 @@
     <string name="nomor_tujuan">Nomor Tujuan:</string>
     <string name="format_laporan">Format Laporan</string>
     <string name="setting">Setting</string>
+    <string name="penyakit">Penyakit</string>
 
     <string-array name="desa_array">
         <item>Natar</item>
