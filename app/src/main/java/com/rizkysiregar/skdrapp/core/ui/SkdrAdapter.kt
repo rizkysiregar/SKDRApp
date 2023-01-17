@@ -1,5 +1,6 @@
 package com.rizkysiregar.skdrapp.core.ui
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ class SkdrAdapter: RecyclerView.Adapter<SkdrAdapter.ListViewHolder>() {
 
     private var listData = ArrayList<Skdr>()
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setData(newListData: List<Skdr>?){
         if (newListData == null) return
         listData.clear()
