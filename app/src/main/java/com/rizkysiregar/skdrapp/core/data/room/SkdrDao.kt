@@ -30,7 +30,7 @@ interface SkdrDao {
     fun insertDataPenyakit(dataPenyakit: DataPenyakitEntity)
 
    // getDataByPeriode
-    @Query("SELECT * FROM skdr WHERE periode_minggu = :periode")
+    @Query("SELECT * FROM skdr WHERE periode_minggu = :periode ORDER BY kode_penyakit ASC")
     fun getDataByPeriode(periode: Int): LiveData<List<SkdrEntity>>
 
 

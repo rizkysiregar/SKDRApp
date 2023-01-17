@@ -28,9 +28,9 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class HomeFragment : Fragment() {
 
     // binding delegate
-    private var _binding : FragmentHomeBinding? = null
+    private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private val homeViewModel : HomeViewModel by viewModel()
+    private val homeViewModel: HomeViewModel by viewModel()
 
     // chart init
     lateinit var pieChart: PieChart
@@ -168,11 +168,6 @@ class HomeFragment : Fragment() {
         // loading chart
         pieChart.invalidate()
     }
-
-    private fun showRecyclerView(){
-
-    }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

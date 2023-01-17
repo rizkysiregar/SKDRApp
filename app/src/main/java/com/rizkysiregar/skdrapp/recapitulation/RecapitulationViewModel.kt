@@ -1,4 +1,4 @@
-package com.rizkysiregar.skdrapp.home
+package com.rizkysiregar.skdrapp.recapitulation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,7 +7,7 @@ import androidx.lifecycle.switchMap
 import com.rizkysiregar.skdrapp.core.domain.model.Skdr
 import com.rizkysiregar.skdrapp.core.domain.usecase.SkdrUseCase
 
-class HomeViewModel(skdrUseCase: SkdrUseCase): ViewModel() {
+class RecapitulationViewModel(skdrUseCase: SkdrUseCase): ViewModel() {
     // getAllDataByPeriodic
     private val _skdrPeriodic = MutableLiveData<Int>()
     private val _skdr = _skdrPeriodic.switchMap { periode ->
@@ -22,5 +22,4 @@ class HomeViewModel(skdrUseCase: SkdrUseCase): ViewModel() {
         }
         _skdrPeriodic.value = periodic
     }
-
 }

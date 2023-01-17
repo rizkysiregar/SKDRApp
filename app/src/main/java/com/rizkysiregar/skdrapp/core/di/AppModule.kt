@@ -5,6 +5,7 @@ import com.rizkysiregar.skdrapp.core.domain.usecase.SkdrInteractor
 import com.rizkysiregar.skdrapp.core.domain.usecase.SkdrUseCase
 import com.rizkysiregar.skdrapp.home.HomeViewModel
 import com.rizkysiregar.skdrapp.maps.MapsViewModel
+import com.rizkysiregar.skdrapp.recapitulation.RecapitulationViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -16,4 +17,5 @@ val viewModelModule = module {
     viewModel {AddViewModel(get())}
     viewModel { HomeViewModel(get()) }
     viewModel { MapsViewModel(get()) }
+    viewModel { RecapitulationViewModel(get()) }
 }
