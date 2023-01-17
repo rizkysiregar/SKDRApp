@@ -12,4 +12,10 @@
         android:id="@+id/navigation_recapitulation"
         android:icon="@drawable/ic_message"
         android:title="@string/recap" />
+
+    <item
+        android:id="@+id/navigation_setting"
+        android:icon="@drawable/ic_baseline_dataset_24"
+        android:title="@string/setting"
+        />
 </menu>

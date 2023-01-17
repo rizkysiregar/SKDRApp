@@ -26,4 +26,11 @@
         tools:layout="@layout/fragment_recapitulation"
         />
 
+    <fragment
+        android:id="@+id/navigation_setting"
+        android:name="com.rizkysiregar.skdrapp.setting.SettingFragment"
+        android:label="Setting"
+        tools:layout="@layout/fragment_setting"
+        />
+
 </navigation>

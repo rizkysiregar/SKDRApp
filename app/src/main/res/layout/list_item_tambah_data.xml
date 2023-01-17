@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    app:cardCornerRadius="2dp"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="15dp"
     android:id="@+id/add_card_view">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@color/grey">
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@color/teal_700">
 
         <TextView
             android:id="@+id/label_kode"

@@ -53,7 +53,7 @@ class MapsFragment : Fragment() {
                     "Negara Ratu" -> markerLocation = LatLng(-5.316462360596307, 105.1775949791341)
                     "Rejosari" -> markerLocation = LatLng(-5.285764622848798, 105.15480686620937)
                     "Kalisari" -> markerLocation = LatLng(-5.306940725477708, 105.21995813845814)
-                    "Merak Batin" -> markerLocation = LatLng(-5.308845205219369, 105.21625482783304)
+                    "Merak Batin" -> markerLocation = LatLng(-5.313570088532476, 105.1968635083637)
                 }
                 mMap.addMarker(MarkerOptions().position(markerLocation).title(map.namaDesa))
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(markerLocation))
