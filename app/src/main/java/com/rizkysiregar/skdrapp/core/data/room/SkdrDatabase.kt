@@ -8,4 +8,5 @@ import com.rizkysiregar.skdrapp.core.data.entity.SkdrEntity
 @Database(entities = [SkdrEntity::class, DataPenyakitEntity::class], version = 1, exportSchema = false)
 abstract class SkdrDatabase: RoomDatabase() {
     abstract fun skdrDao(): SkdrDao
+    abstract fun dataPenyakitDao(): DataPenyakitDao
 }
