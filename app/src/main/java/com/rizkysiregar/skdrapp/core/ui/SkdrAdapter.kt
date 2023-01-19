@@ -11,7 +11,6 @@ import com.rizkysiregar.skdrapp.databinding.ListItemTambahDataBinding
 
 
 class SkdrAdapter: RecyclerView.Adapter<SkdrAdapter.ListViewHolder>() {
-
     private var listData = ArrayList<Skdr>()
 
     @SuppressLint("NotifyDataSetChanged")
@@ -40,7 +39,7 @@ class SkdrAdapter: RecyclerView.Adapter<SkdrAdapter.ListViewHolder>() {
                 tvListAddNamaDesa.text = data.namaDesa
                 tvAddNamaPenyakit.text = data.namaPenyakit
                 tvPeriodeMinggu.text = data.periodeMinggu.toString()
-                tvJumlahPenderita.text = data.jumlahPenderita.toString()
+                tvJumlahPenderita.text = "${data.jumlahPenderita} Orang"
                 tvKode.text = data.kodePenyakit
             }
         }

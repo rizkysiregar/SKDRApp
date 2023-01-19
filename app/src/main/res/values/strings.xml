@@ -27,6 +27,7 @@
     <string name="format_laporan">Format Laporan</string>
     <string name="setting">Setting</string>
     <string name="penyakit">Penyakit</string>
+    <string name="tools_jumlah">12 Orang</string>
 
     <string-array name="desa_array">
         <item>Natar</item>
