@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.rizkysiregar.skdrapp.R
 import com.rizkysiregar.skdrapp.core.domain.model.Skdr
@@ -34,7 +35,9 @@ class SkdrAdapter: RecyclerView.Adapter<SkdrAdapter.ListViewHolder>() {
 
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         private val binding = ListItemTambahDataBinding.bind(itemView)
+        lateinit var getSkdr: Skdr
         fun bind(data: Skdr) {
+            getSkdr = data
             with(binding){
                 tvListAddNamaDesa.text = data.namaDesa
                 tvAddNamaPenyakit.text = data.namaPenyakit

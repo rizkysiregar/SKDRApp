@@ -9,6 +9,8 @@ class AddViewModel(private val skdrUseCase: SkdrUseCase, private val dataPenyaki
     fun insertData(skdr: Skdr) =
         skdrUseCase.insertNewData(skdr)
     val getAllData = skdrUseCase.getAllData()
-
     val getAllDataPenyakit = dataPenyakitUseCase.getAllDataPenyakit()
+    fun deleteData(skdr: Skdr){
+        skdrUseCase.deleteData(skdr)
+    }
 }

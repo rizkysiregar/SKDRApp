@@ -37,4 +37,7 @@ interface SkdrDao {
     @Delete
     fun deleteDataPenyakit(data: DataPenyakitEntity)
 
+    @Delete
+    fun deleteDataSkdr(skdrEntity: SkdrEntity)
+
 }

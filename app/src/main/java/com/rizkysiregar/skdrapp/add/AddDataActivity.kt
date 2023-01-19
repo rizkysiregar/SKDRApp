@@ -9,7 +9,9 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.rizkysiregar.skdrapp.R
 import com.rizkysiregar.skdrapp.core.domain.model.Skdr
 import com.rizkysiregar.skdrapp.core.ui.SkdrAdapter
@@ -50,6 +52,7 @@ class AddDataActivity : AppCompatActivity(){
             binding.spPenyakit.adapter = it
         }
 
+
         ArrayAdapter.createFromResource(
             this,
             R.array.minngu_array,
@@ -75,6 +78,8 @@ class AddDataActivity : AppCompatActivity(){
             setHasFixedSize(true)
             adapter = skdrAdapter
         }
+
+        initAction()
     }
 
     private fun setData(){
@@ -118,6 +123,32 @@ class AddDataActivity : AppCompatActivity(){
         }catch(e: Exception){
             Toast.makeText(this,"Error: $e", Toast.LENGTH_LONG).show()
         }
+    }
+
+    private fun initAction(){
+        val itemTouchHelper = ItemTouchHelper(object: ItemTouchHelper.Callback(){
+            override fun getMovementFlags(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder
+            ): Int {
+                return makeMovementFlags(0,ItemTouchHelper.RIGHT)
+            }
+
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val skdr = (viewHolder as SkdrAdapter.ListViewHolder).getSkdr
+                addViewModel.deleteData(skdr)
+            }
+
+        })
+        itemTouchHelper.attachToRecyclerView(binding.rvTambahData)
     }
 
 }

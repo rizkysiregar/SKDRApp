@@ -30,6 +30,11 @@ class SkdrRepository constructor(
         }
     }
 
+    override fun deleteData(skdr: Skdr) {
+        val dataSkdr = DataMapper.mapSkdrDomainToSkdrEntity(skdr)
+        appExecutors.diskIO().execute { localDataSource.deleteDataSkdr(dataSkdr) }
+    }
+
     override fun getAllDataPenyakit(): LiveData<List<DataPenyakit>> {
         return Transformations.map(localDataSource.getAllDataPenyakit()){
             DataMapper.mapDataPenyakitEntitiesToDomain(it)
