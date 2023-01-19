@@ -31,15 +31,13 @@ object DataMapper {
         input.map{
             DataPenyakit(
                 kodePenyakit = it.kodePenyakit,
-                namaPenyakit = it.namaPenyakit,
-                deskripsi = it.deskripsi
+                namaPenyakit = it.namaPenyakit
             )
         }
 
     fun  mapDataPenyakitDomainToEntity(input: DataPenyakit) = DataPenyakitEntity(
         kodePenyakit = input.kodePenyakit,
-        namaPenyakit = input.namaPenyakit,
-        deskripsi = input.deskripsi
+        namaPenyakit = input.namaPenyakit
     )
 
 

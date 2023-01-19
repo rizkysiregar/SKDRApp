@@ -41,5 +41,10 @@ class SkdrRepository constructor(
         appExecutors.diskIO().execute { localDataSource.insertDataPenyakit(dataPenyakit) }
     }
 
+    override fun deleteDataPenyakit(dataPenyakit: DataPenyakit) {
+        val dataPenyakit = DataMapper.mapDataPenyakitDomainToEntity(dataPenyakit)
+        appExecutors.diskIO().execute { localDataSource.deleteDataPenyakit(dataPenyakit) }
+    }
+
 
 }

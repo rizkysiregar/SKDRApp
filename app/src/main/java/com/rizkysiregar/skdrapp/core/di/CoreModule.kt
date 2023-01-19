@@ -4,6 +4,7 @@ import androidx.room.Room
 import com.rizkysiregar.skdrapp.core.data.LocalDataSource
 import com.rizkysiregar.skdrapp.core.data.SkdrRepository
 import com.rizkysiregar.skdrapp.core.data.room.SkdrDatabase
+import com.rizkysiregar.skdrapp.core.domain.repository.IDataPenyakitRepository
 import com.rizkysiregar.skdrapp.core.domain.repository.ISkdrRepository
 import com.rizkysiregar.skdrapp.core.utils.AppExecutors
 import org.koin.android.ext.koin.androidContext
@@ -23,4 +24,5 @@ val repositoryModule = module {
     single { LocalDataSource(get()) }
     factory { AppExecutors() }
     single<ISkdrRepository>{SkdrRepository(get(),get())}
+    single<IDataPenyakitRepository>{SkdrRepository(get(),get())}
 }

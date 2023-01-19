@@ -12,4 +12,5 @@ class LocalDataSource constructor(private val skdrDao: SkdrDao) {
     fun getAllDataPenyakit(): LiveData<List<DataPenyakitEntity>> = skdrDao.getAllDataPenyakit()
     fun insertDataPenyakit(dataPenyakitEntity: DataPenyakitEntity) = skdrDao.insertDataPenyakit(dataPenyakitEntity)
     fun getAllDataByPeriodic(periodic: Int): LiveData<List<SkdrEntity>> = skdrDao.getDataByPeriode(periodic)
+    fun deleteDataPenyakit(data: DataPenyakitEntity) = skdrDao.deleteDataPenyakit(data)
 }

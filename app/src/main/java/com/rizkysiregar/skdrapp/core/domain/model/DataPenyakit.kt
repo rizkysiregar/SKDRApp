@@ -7,6 +7,5 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class DataPenyakit(
     val kodePenyakit: String,
-    val namaPenyakit: String,
-    val deskripsi: String
+    val namaPenyakit: String
 ):Parcelable

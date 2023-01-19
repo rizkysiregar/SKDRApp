@@ -78,4 +78,8 @@ dependencies {
     def koin_android_version= "3.3.0"
     implementation "io.insert-koin:koin-core:$koin_version"
     implementation "io.insert-koin:koin-android:$koin_android_version"
+
+    // lib testing 
+    testImplementation "org.mockito:mockito-core:3.2.4"
+    testImplementation "org.mockito:mockito-inline:3.2.4"
 }

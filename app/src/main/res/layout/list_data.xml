@@ -10,6 +10,8 @@
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:padding="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -17,14 +19,15 @@
             android:id="@+id/tv_label_kode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="KODE"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="16dp"
             android:padding="5dp"
-            android:layout_margin="5dp"
+            android:text="KODE"
             android:textColor="@color/black"
-            android:textSize="26sp"
+            android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="@id/container"
+            app:layout_constraintTop_toTopOf="@id/container" />
 
         <TextView
             android:id="@+id/kode"
@@ -32,8 +35,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="26sp"
-            android:layout_marginTop="10dp"
-            android:textStyle="bold"
+            android:layout_margin="10dp"
+            android:padding="10dp"
             app:layout_constraintEnd_toEndOf="@+id/tv_label_kode"
             app:layout_constraintStart_toStartOf="@+id/tv_label_kode"
             app:layout_constraintTop_toBottomOf="@+id/tv_label_kode"
@@ -43,20 +46,21 @@
             android:id="@+id/tv_label_nama"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="26sp"
-            android:textStyle="bold"
             android:layout_marginStart="60dp"
+            android:text="PENYAKIT"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:padding="6dp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/tv_label_kode"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_label_kode"
-            app:layout_constraintTop_toTopOf="@+id/tv_label_kode"
-            tools:text="PENYAKIT" />
+            app:layout_constraintTop_toTopOf="@+id/tv_label_kode" />
 
         <TextView
             android:id="@+id/penyakit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
             android:maxLines="5"
             android:padding="6dp"
             android:textColor="@color/black"
@@ -65,19 +69,8 @@
             app:layout_constraintEnd_toEndOf="@+id/tv_label_nama"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/tv_label_nama"
-            app:layout_constraintTop_toBottomOf="@+id/tv_label_nama"
-            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintTop_toTopOf="@+id/kode"
             tools:text="@string/malaria_mix" />
-
-
-        <ImageButton
-            android:id="@+id/btn_remove"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_delete_24"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_label_nama"
-            app:layout_constraintTop_toTopOf="@+id/tv_label_nama" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

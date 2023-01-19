@@ -3,7 +3,11 @@ package com.rizkysiregar.skdrapp.add
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rizkysiregar.skdrapp.R
@@ -11,8 +15,9 @@ import com.rizkysiregar.skdrapp.core.domain.model.Skdr
 import com.rizkysiregar.skdrapp.core.ui.SkdrAdapter
 import com.rizkysiregar.skdrapp.databinding.ActivityAddDataBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.Locale.Category
 
-class AddDataActivity : AppCompatActivity() {
+class AddDataActivity : AppCompatActivity(){
 
     // layout binding
     lateinit var binding : ActivityAddDataBinding
@@ -25,6 +30,7 @@ class AddDataActivity : AppCompatActivity() {
         binding = ActivityAddDataBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         ArrayAdapter.createFromResource(
             this,
             R.array.desa_array,
@@ -34,9 +40,10 @@ class AddDataActivity : AppCompatActivity() {
             binding.spDesa.adapter = it
         }
 
+
         ArrayAdapter.createFromResource(
             this,
-            R.array.penyakit_array,
+           R.array.penyakit_array,
             android.R.layout.simple_spinner_item
         ).also {
             it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -114,3 +121,5 @@ class AddDataActivity : AppCompatActivity() {
     }
 
 }
+
+

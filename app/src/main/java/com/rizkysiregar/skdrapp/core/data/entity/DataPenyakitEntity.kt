@@ -11,8 +11,5 @@ data class DataPenyakitEntity (
     val kodePenyakit: String,
 
     @ColumnInfo(name = "nama_penyakit")
-    val namaPenyakit: String,
-
-    @ColumnInfo(name = "deskripsi")
-    val deskripsi: String
+    val namaPenyakit: String
 )

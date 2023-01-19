@@ -2,6 +2,7 @@ package com.rizkysiregar.skdrapp.core.data.room
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -33,5 +34,7 @@ interface SkdrDao {
     @Query("SELECT * FROM skdr WHERE periode_minggu = :periode ORDER BY kode_penyakit ASC")
     fun getDataByPeriode(periode: Int): LiveData<List<SkdrEntity>>
 
+    @Delete
+    fun deleteDataPenyakit(data: DataPenyakitEntity)
 
 }

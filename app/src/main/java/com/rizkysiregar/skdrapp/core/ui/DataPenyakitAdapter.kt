@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import android.widget.ListView
 import androidx.recyclerview.widget.RecyclerView
 import com.rizkysiregar.skdrapp.R
+import com.rizkysiregar.skdrapp.core.di.viewModelModule
 import com.rizkysiregar.skdrapp.core.domain.model.DataPenyakit
 import com.rizkysiregar.skdrapp.databinding.ListDataBinding
+import com.rizkysiregar.skdrapp.setting.SettingViewModel
 
-class DataPenyakitAdapter: RecyclerView.Adapter<DataPenyakitAdapter.ListViewHolder>() {
+class DataPenyakitAdapter(): RecyclerView.Adapter<DataPenyakitAdapter.ListViewHolder>() {
 
     private val listNewData = ArrayList<DataPenyakit>()
 
@@ -21,6 +23,7 @@ class DataPenyakitAdapter: RecyclerView.Adapter<DataPenyakitAdapter.ListViewHold
         listNewData.addAll(newData)
         notifyDataSetChanged()
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder =
         ListViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.list_data, parent, false))
@@ -38,6 +41,7 @@ class DataPenyakitAdapter: RecyclerView.Adapter<DataPenyakitAdapter.ListViewHold
             with(binding){
                 kode.text = data.kodePenyakit
                 penyakit.text = data.namaPenyakit
+
             }
         }
     }

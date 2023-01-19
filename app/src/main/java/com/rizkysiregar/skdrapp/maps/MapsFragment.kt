@@ -47,7 +47,6 @@ class MapsFragment : Fragment() {
         var markerLocation = LatLng(-5.244242361783416, 105.22078387730636)
         mapsViewModel.getAllData.observe(this){
             it.forEach { map ->
-
                 when(map.namaDesa){
                     "Natar" -> markerLocation = LatLng(-5.241846069680059, 105.24069875772317)
                     "Negara Ratu" -> markerLocation = LatLng(-5.316462360596307, 105.1775949791341)
@@ -55,9 +54,10 @@ class MapsFragment : Fragment() {
                     "Kalisari" -> markerLocation = LatLng(-5.306940725477708, 105.21995813845814)
                     "Merak Batin" -> markerLocation = LatLng(-5.313570088532476, 105.1968635083637)
                 }
-                mMap.addMarker(MarkerOptions().position(markerLocation).title(map.namaDesa))
+                mMap.addMarker(MarkerOptions().position(markerLocation).title(map.namaDesa).snippet("kode:${map.kodePenyakit}, kasus:${map.jumlahPenderita}"))
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(markerLocation))
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(markerLocation, 10f))
+
             }
         }
 
