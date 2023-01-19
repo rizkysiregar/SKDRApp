@@ -18,9 +18,15 @@ interface SkdrDao {
     @Query("SELECT * FROM skdr ORDER BY id DESC")
     fun getAllData(): LiveData<List<SkdrEntity>>
 
+
+
     // query insert ke table skdr
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertSkdr(skdr: SkdrEntity)
+
+    // query get kode by name
+    @Query("SELECT * FROM data_penyakit WHERE nama_penyakit LIKE :nama")
+    fun getKodeByName(nama: String): LiveData<List<DataPenyakitEntity>>
 
     // get data from table dataPenyakit
     @Query("SELECT * FROM data_penyakit")

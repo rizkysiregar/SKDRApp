@@ -27,6 +27,11 @@ class AddDataActivity : AppCompatActivity(){
     // view model
     private val addViewModel : AddViewModel by viewModel()
 
+    // recycler view
+    private lateinit var recyclerView: RecyclerView
+
+    private lateinit var kodePenyakit: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddDataBinding.inflate(layoutInflater)
@@ -42,15 +47,15 @@ class AddDataActivity : AppCompatActivity(){
             binding.spDesa.adapter = it
         }
 
-
-        ArrayAdapter.createFromResource(
-            this,
-           R.array.penyakit_array,
-            android.R.layout.simple_spinner_item
-        ).also {
-            it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.spPenyakit.adapter = it
-        }
+        fillSpinner()
+//        ArrayAdapter.createFromResource(
+//            this,
+//           R.array.penyakit_array,
+//            android.R.layout.simple_spinner_item
+//        ).also {
+//            it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//            binding.spPenyakit.adapter = it
+//        }
 
 
         ArrayAdapter.createFromResource(
@@ -62,64 +67,52 @@ class AddDataActivity : AppCompatActivity(){
             binding.spMinggu.adapter = it
         }
 
+        addViewModel.setDataPenyakitByName("")
+
         // insert data
         binding.btnSubmit.setOnClickListener {
             setData()
         }
 
-        // adapter
+        // recyclerview init
+        recyclerView = binding.rvTambahData
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.setHasFixedSize(true)
+        initAction()
+        showRecyclerView()
+    }
+
+    private fun showRecyclerView(){
         val skdrAdapter = SkdrAdapter()
         addViewModel.getAllData.observe(this){
             skdrAdapter.setData(it)
         }
-
-        with(binding.rvTambahData){
-            layoutManager = LinearLayoutManager(context)
-            setHasFixedSize(true)
-            adapter = skdrAdapter
-        }
-
-        initAction()
+        recyclerView.adapter = skdrAdapter
     }
 
     private fun setData(){
         val namaDesa = binding.spDesa.selectedItem.toString()
         val periodeMinggu = binding.spMinggu.selectedItem.toString().toInt()
-        val namaPenyakit = binding.spPenyakit.selectedItem.toString()
+        var namaPenyakit = binding.spPenyakit.selectedItem.toString()
         val jumlahPenderita = binding.edtJumlahPasien.text.toString().toInt()
-        var kodePenyakit = ""
-
-
-        when(namaPenyakit){
-            "Diare Akut" -> kodePenyakit = "A"
-            "Malaria Konfirmasi" -> kodePenyakit = "B"
-            "Tersangka Demam Dengue" -> kodePenyakit = "C"
-            "Pneumonia" -> kodePenyakit = "D"
-            "Diare Berdarah ATAU Disentri" -> kodePenyakit = "E"
-            "Tersangka Demam Tifoid" -> kodePenyakit = "F"
-            "Sindrom Jaundice Akut" -> kodePenyakit = "G"
-            "Tersangka Chikungunya" -> kodePenyakit = "H"
-            "Tersangka Flu Burung pada Manusia" -> kodePenyakit = "J"
-            "Tersangka Campak" -> kodePenyakit = "K"
-            "Tersangka Difteri" -> kodePenyakit = "L"
-            "Tersangka Pertussis" -> kodePenyakit = "M"
-            "AFP (Lumpuh Layuh Mendadak)" -> kodePenyakit = "N"
-            "Kasus Gigitan Hewan Penular Rabies" -> kodePenyakit = "P"
-            "Tersangka Antraks" -> kodePenyakit = "Q"
-            "Tersangka Leptospirosis" -> kodePenyakit = "R"
-            "Tersangka Kolera" -> kodePenyakit = "S"
-            "Klaster Penyakit yang tidak lazim" -> kodePenyakit = "T"
-            "Tersangka Meningitis/Ensefalitis" -> kodePenyakit = "U"
-            "Tersangka Tetanus Neonatorum" -> kodePenyakit = "V"
-            "Tersangka Tetanus" -> kodePenyakit = "W"
-            "ILI (Influenza Like Ilness)" -> kodePenyakit = "Y"
-            "ILI (Tersangka HFMD (Hand, Foot, Mouth Disease)" -> kodePenyakit = "Z"
+        addViewModel.setDataPenyakitByName(namaPenyakit)
+        addViewModel.dataPenyakit.observe(this){
+            for (dataPenyakit in it) {
+                kodePenyakit = dataPenyakit.kodePenyakit
+            }
         }
-
         try {
-            val skdr = Skdr(0,namaDesa,periodeMinggu,namaPenyakit,kodePenyakit,jumlahPenderita)
-            addViewModel.insertData(skdr)
-            Toast.makeText(this,"Success", Toast.LENGTH_SHORT).show()
+            if (kodePenyakit.isEmpty()){
+                addViewModel.dataPenyakit.observe(this){
+                    for (dataPenyakit in it) {
+                        kodePenyakit = dataPenyakit.kodePenyakit
+                    }
+                }
+            }else{
+                val skdr = Skdr(0,namaDesa,periodeMinggu,namaPenyakit,kodePenyakit,jumlahPenderita)
+                addViewModel.insertData(skdr)
+                Toast.makeText(this,"Success", Toast.LENGTH_SHORT).show()
+            }
         }catch(e: Exception){
             Toast.makeText(this,"Error: $e", Toast.LENGTH_LONG).show()
         }
@@ -149,6 +142,21 @@ class AddDataActivity : AppCompatActivity(){
 
         })
         itemTouchHelper.attachToRecyclerView(binding.rvTambahData)
+    }
+
+    private fun fillSpinner(){
+        try{
+            val dataPenyakit: ArrayList<String> = ArrayList()
+            addViewModel.getAllDataPenyakit.observe(this){
+                it.forEach {
+                    dataPenyakit.add(it.namaPenyakit)
+                }
+                val arrayAdapter = ArrayAdapter(this,android.R.layout.simple_list_item_1,dataPenyakit)
+                binding.spPenyakit.adapter = arrayAdapter
+            }
+        }catch (e: Exception){
+            e.printStackTrace()
+        }
     }
 
 }

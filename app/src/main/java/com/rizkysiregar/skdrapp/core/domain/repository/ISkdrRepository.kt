@@ -1,6 +1,7 @@
 package com.rizkysiregar.skdrapp.core.domain.repository
 
 import androidx.lifecycle.LiveData
+import com.rizkysiregar.skdrapp.core.domain.model.DataPenyakit
 import com.rizkysiregar.skdrapp.core.domain.model.Skdr
 
 interface ISkdrRepository {
@@ -8,4 +9,5 @@ interface ISkdrRepository {
     fun insertData(skdr: Skdr)
     fun getAllDataByPeriodic(periodic: Int): LiveData<List<Skdr>>
     fun deleteData(skdr: Skdr)
+    fun getDataByName(name: String): LiveData<List<DataPenyakit>>
 }

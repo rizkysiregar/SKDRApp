@@ -7,4 +7,5 @@ interface IDataPenyakitRepository {
     fun getAllDataPenyakit(): LiveData<List<DataPenyakit>>
     fun insertData(dataPenyakit: DataPenyakit)
     fun deleteDataPenyakit(dataPenyakit: DataPenyakit)
+    fun getDataByName(name: String): LiveData<List<DataPenyakit>>
 }

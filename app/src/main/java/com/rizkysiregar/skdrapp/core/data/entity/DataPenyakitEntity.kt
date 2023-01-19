@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "data_penyakit")
 data class DataPenyakitEntity (
     @PrimaryKey(autoGenerate = false)
-    @ColumnInfo(name = "kodePenyakit")
+    @ColumnInfo(name = "kode_penyakit")
     val kodePenyakit: String,
 
     @ColumnInfo(name = "nama_penyakit")

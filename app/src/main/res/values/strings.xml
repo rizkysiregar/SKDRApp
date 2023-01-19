@@ -37,32 +37,6 @@
         <item>Merak Batin</item>
     </string-array>
 
-    <string-array name="penyakit_array">
-        <item>Diare Akut</item>
-        <item>Malaria Konfirmasi</item>
-        <item>Tersangka Demam Dengue</item>
-        <item>Pneumonia</item>
-        <item>Diare Berdarah ATAU Disentri</item>
-        <item>Tersangka Demam Tifoid</item>
-        <item>Sindrom Jaundice Akut</item>
-        <item>Tersangka Chikungunya</item>
-        <item>Tersangka Flu Burung pada Manusia</item>
-        <item>Tersangka Campak</item>
-        <item>Tersangka Difteri</item>
-        <item>Tersangka Pertussis</item>
-        <item>AFP (Lumpuh Layuh Mendadak)</item>
-        <item>Kasus Gigitan Hewan Penular Rabies</item>
-        <item>Tersangka Antraks</item>
-        <item>Tersangka Leptosipirosis</item>
-        <item>Tersangka Kolera</item>
-        <item>Klaster Penyakit yang tidak lazim</item>
-        <item>Tersangka Meningitis/Ensefalitis</item>
-        <item>Tersangka Tetanus Neonatorum</item>
-        <item>Tersangka Tetanus</item>
-        <item>ILI (Influenza Like Ilness)</item>
-        <item>ILI (Tersangka HFMD (Hand, Foot, Mouth Disease)</item>
-    </string-array>
-
     <string-array name="minngu_array">
         <item>1</item>
         <item>2</item>
@@ -107,17 +81,15 @@
         <item>41</item>
         <item>42</item>
         <item>43</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
+        <item>44</item>
+        <item>45</item>
+        <item>46</item>
+        <item>47</item>
+        <item>48</item>
+        <item>49</item>
+        <item>50</item>
+        <item>51</item>
+        <item>52</item>
     </string-array>
 
 
