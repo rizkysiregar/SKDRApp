@@ -37,7 +37,9 @@ class DataPenyakitAdapter(): RecyclerView.Adapter<DataPenyakitAdapter.ListViewHo
 
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = ListDataBinding.bind(itemView)
+        lateinit var getData: DataPenyakit
         fun bind(data: DataPenyakit){
+            getData = data
             with(binding){
                 kode.text = data.kodePenyakit
                 penyakit.text = data.namaPenyakit

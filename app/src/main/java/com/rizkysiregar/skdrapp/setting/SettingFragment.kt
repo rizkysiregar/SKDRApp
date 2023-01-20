@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.rizkysiregar.skdrapp.R
 import com.rizkysiregar.skdrapp.core.domain.model.DataPenyakit
 import com.rizkysiregar.skdrapp.core.ui.DataPenyakitAdapter
@@ -46,6 +48,7 @@ class SettingFragment() : Fragment() {
         }
 
         // show recyclerview from adapter
+        initAction()
         showRecycler()
     }
 
@@ -61,7 +64,31 @@ class SettingFragment() : Fragment() {
             adapter = settingAdapter
 
         }
+    }
 
+    private fun initAction(){
+        val itemTouchHelper = ItemTouchHelper(object: ItemTouchHelper.Callback(){
+            override fun getMovementFlags(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder
+            ): Int {
+                return makeMovementFlags(0,ItemTouchHelper.RIGHT)
+            }
+
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val data = (viewHolder as DataPenyakitAdapter.ListViewHolder).getData
+                settingViewModel.deleteData(data)
+            }
+        })
+        itemTouchHelper.attachToRecyclerView(binding.recyclerview)
     }
 
 }
