@@ -105,10 +105,9 @@ class AddDataActivity : AppCompatActivity(){
         val namaPenyakit = binding.spPenyakit.selectedItem.toString()
         addViewModel.setDataPenyakitByName(namaPenyakit)
         try {
-                addViewModel.dataPenyakit.observe(this){
-                    kodePenyakit = it[0].kodePenyakit
-
-                }
+            addViewModel.dataPenyakit.observe(this){
+                kodePenyakit = it[0].kodePenyakit
+            }
             val skdr = Skdr(0,namaDesa,periodeMinggu,namaPenyakit,kodePenyakit,jumlahPenderita)
             addViewModel.insertData(skdr)
             Toast.makeText(this,"Success", Toast.LENGTH_SHORT).show()
@@ -143,8 +142,6 @@ class AddDataActivity : AppCompatActivity(){
         })
         itemTouchHelper.attachToRecyclerView(binding.rvTambahData)
     }
-
-
 
 }
 
