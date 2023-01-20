@@ -1,9 +1,6 @@
 package com.rizkysiregar.skdrapp.add
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.switchMap
+import androidx.lifecycle.*
 import com.rizkysiregar.skdrapp.core.domain.model.DataPenyakit
 import com.rizkysiregar.skdrapp.core.domain.model.Skdr
 import com.rizkysiregar.skdrapp.core.domain.usecase.DataPenyakitUseCase
@@ -17,7 +14,6 @@ class AddViewModel(private val skdrUseCase: SkdrUseCase, private val dataPenyaki
     fun deleteData(skdr: Skdr){
         skdrUseCase.deleteData(skdr)
     }
-
     private val _dataPenyakitByName = MutableLiveData<String>()
     private val _dataPenyakit = _dataPenyakitByName.switchMap { name ->
         dataPenyakitUseCase.getDataByName(name)

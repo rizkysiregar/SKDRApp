@@ -16,6 +16,8 @@ import com.rizkysiregar.skdrapp.R
 import com.rizkysiregar.skdrapp.core.domain.model.Skdr
 import com.rizkysiregar.skdrapp.core.ui.SkdrAdapter
 import com.rizkysiregar.skdrapp.databinding.ActivityAddDataBinding
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Locale.Category
 
@@ -30,7 +32,6 @@ class AddDataActivity : AppCompatActivity(){
     // recycler view
     private lateinit var recyclerView: RecyclerView
 
-    private lateinit var kodePenyakit: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,16 +48,6 @@ class AddDataActivity : AppCompatActivity(){
             binding.spDesa.adapter = it
         }
 
-        fillSpinner()
-//        ArrayAdapter.createFromResource(
-//            this,
-//           R.array.penyakit_array,
-//            android.R.layout.simple_spinner_item
-//        ).also {
-//            it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//            binding.spPenyakit.adapter = it
-//        }
-
 
         ArrayAdapter.createFromResource(
             this,
@@ -67,7 +58,8 @@ class AddDataActivity : AppCompatActivity(){
             binding.spMinggu.adapter = it
         }
 
-        addViewModel.setDataPenyakitByName("")
+        // populate data penyakit from db
+        fillSpinner()
 
         // insert data
         binding.btnSubmit.setOnClickListener {
@@ -82,6 +74,21 @@ class AddDataActivity : AppCompatActivity(){
         showRecyclerView()
     }
 
+    private fun fillSpinner(){
+        try{
+            val dataPenyakit: ArrayList<String> = ArrayList()
+            addViewModel.getAllDataPenyakit.observe(this){
+                it.forEach {
+                    dataPenyakit.add(it.namaPenyakit)
+                }
+                val arrayAdapter = ArrayAdapter(this,android.R.layout.simple_list_item_1,dataPenyakit)
+                binding.spPenyakit.adapter = arrayAdapter
+            }
+        }catch (e: Exception){
+            e.printStackTrace()
+        }
+    }
+
     private fun showRecyclerView(){
         val skdrAdapter = SkdrAdapter()
         addViewModel.getAllData.observe(this){
@@ -91,22 +98,21 @@ class AddDataActivity : AppCompatActivity(){
     }
 
     private fun setData(){
+        var kodePenyakit = ""
         val namaDesa = binding.spDesa.selectedItem.toString()
         val periodeMinggu = binding.spMinggu.selectedItem.toString().toInt()
-        var namaPenyakit = binding.spPenyakit.selectedItem.toString()
         val jumlahPenderita = binding.edtJumlahPasien.text.toString().toInt()
+        val namaPenyakit = binding.spPenyakit.selectedItem.toString()
         addViewModel.setDataPenyakitByName(namaPenyakit)
-        addViewModel.dataPenyakit.observe(this){
-            for (dataPenyakit in it) {
-                kodePenyakit = dataPenyakit.kodePenyakit
-            }
-        }
         try {
             if (kodePenyakit.isEmpty()){
                 addViewModel.dataPenyakit.observe(this){
                     for (dataPenyakit in it) {
                         kodePenyakit = dataPenyakit.kodePenyakit
                     }
+                    val skdr = Skdr(0,namaDesa,periodeMinggu,namaPenyakit,kodePenyakit,jumlahPenderita)
+                    addViewModel.insertData(skdr)
+                    Toast.makeText(this,"Success", Toast.LENGTH_SHORT).show()
                 }
             }else{
                 val skdr = Skdr(0,namaDesa,periodeMinggu,namaPenyakit,kodePenyakit,jumlahPenderita)
@@ -144,20 +150,7 @@ class AddDataActivity : AppCompatActivity(){
         itemTouchHelper.attachToRecyclerView(binding.rvTambahData)
     }
 
-    private fun fillSpinner(){
-        try{
-            val dataPenyakit: ArrayList<String> = ArrayList()
-            addViewModel.getAllDataPenyakit.observe(this){
-                it.forEach {
-                    dataPenyakit.add(it.namaPenyakit)
-                }
-                val arrayAdapter = ArrayAdapter(this,android.R.layout.simple_list_item_1,dataPenyakit)
-                binding.spPenyakit.adapter = arrayAdapter
-            }
-        }catch (e: Exception){
-            e.printStackTrace()
-        }
-    }
+
 
 }
 

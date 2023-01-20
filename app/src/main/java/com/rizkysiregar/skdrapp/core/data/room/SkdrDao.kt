@@ -38,7 +38,7 @@ interface SkdrDao {
 
    // getDataByPeriode
     @Query("SELECT * FROM skdr WHERE periode_minggu = :periode ORDER BY kode_penyakit ASC")
-    fun getDataByPeriode(periode: Int): LiveData<List<SkdrEntity>>
+   fun getDataByPeriode(periode: Int): LiveData<List<SkdrEntity>>
 
     @Delete
     fun deleteDataPenyakit(data: DataPenyakitEntity)
