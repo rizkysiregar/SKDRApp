@@ -37,6 +37,15 @@
         <item>Merak Batin</item>
     </string-array>
 
+    <string-array name="nomor_array">
+        <item>6281296100884</item>
+        <item>6281284599747</item>
+        <item>6281284599741</item>
+        <item>6285714868413</item>
+        <item>6285714868415</item>
+        <item>6281806818193</item>
+    </string-array>
+
     <string-array name="minngu_array">
         <item>1</item>
         <item>2</item>

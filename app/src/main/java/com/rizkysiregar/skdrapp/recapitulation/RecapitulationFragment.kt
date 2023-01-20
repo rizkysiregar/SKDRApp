@@ -35,15 +35,26 @@ class RecapitulationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // set spinner data
+        // set spinner data jumlah minggu
         ArrayAdapter.createFromResource(
-            requireContext(),
+            requireActivity(),
             R.array.minngu_array,
             android.R.layout.simple_spinner_item
         ).also {
             it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             binding.spMingguRecap.adapter = it
         }
+
+        // set spinner data
+        ArrayAdapter.createFromResource(
+            requireActivity(),
+            R.array.nomor_array,
+            android.R.layout.simple_spinner_item
+        ).also {
+            it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.spNumberPhone.adapter = it
+        }
+
 
         // Adapter RecyclerView
         val skdrAdapter = SkdrAdapter()
@@ -59,24 +70,29 @@ class RecapitulationFragment : Fragment() {
             var periodic = binding.spMingguRecap.selectedItem.toString().toInt()
             recapitulationViewModel.setSkdrPeriodic(periodic)
         }
-        val sb = StringBuilder()
-
+        val sbWA = StringBuilder()
+        val sbSMS = StringBuilder()
         recapitulationViewModel.skdr.observe(requireActivity()) {
             skdrAdapter.setData(it)
-            sb.clear()
-            sb.append("SKDR ${binding.spMingguRecap.selectedItem}#2023")
+            sbWA.clear()
+            sbSMS.clear()
+            sbWA.append("SKDR ${binding.spMingguRecap.selectedItem}#2023")
+            sbSMS.append("MANUAL#${binding.spMingguRecap.selectedItem}")
             for (skdr in it){
-              sb.append("#${skdr.kodePenyakit}${skdr.jumlahPenderita}")
+                sbWA.append("#${skdr.kodePenyakit}${skdr.jumlahPenderita}")
+                sbSMS.append("#${skdr.kodePenyakit}${skdr.jumlahPenderita}")
             }
-            binding.tvFormatLaporan.text = sb
+            binding.tvFormatLaporan.text = sbWA
         }
-        var number = "6281279648621"
+
         binding.btnWa.setOnClickListener {
-           sendWA(sb,number)
+            var number = binding.spNumberPhone.selectedItem.toString()
+           sendWA(sbWA,number)
         }
 
         binding.btnSms.setOnClickListener {
-            sendSms(sb.toString(),number)
+            var number = binding.spNumberPhone.selectedItem.toString()
+            sendSms(sbSMS.toString(),number)
         }
 
     }

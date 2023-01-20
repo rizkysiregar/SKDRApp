@@ -76,12 +76,12 @@ class AddDataActivity : AppCompatActivity(){
 
     private fun fillSpinner(){
         try{
-            val dataPenyakit: ArrayList<String> = ArrayList()
+            val dataNamaPenyakit: ArrayList<String> = ArrayList()
             addViewModel.getAllDataPenyakit.observe(this){
                 it.forEach {
-                    dataPenyakit.add(it.namaPenyakit)
+                    dataNamaPenyakit.add(it.namaPenyakit)
                 }
-                val arrayAdapter = ArrayAdapter(this,android.R.layout.simple_list_item_1,dataPenyakit)
+                val arrayAdapter = ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,dataNamaPenyakit)
                 binding.spPenyakit.adapter = arrayAdapter
             }
         }catch (e: Exception){
@@ -105,20 +105,14 @@ class AddDataActivity : AppCompatActivity(){
         val namaPenyakit = binding.spPenyakit.selectedItem.toString()
         addViewModel.setDataPenyakitByName(namaPenyakit)
         try {
-            if (kodePenyakit.isEmpty()){
                 addViewModel.dataPenyakit.observe(this){
-                    for (dataPenyakit in it) {
-                        kodePenyakit = dataPenyakit.kodePenyakit
-                    }
-                    val skdr = Skdr(0,namaDesa,periodeMinggu,namaPenyakit,kodePenyakit,jumlahPenderita)
-                    addViewModel.insertData(skdr)
-                    Toast.makeText(this,"Success", Toast.LENGTH_SHORT).show()
+                    kodePenyakit = it[0].kodePenyakit
+
                 }
-            }else{
-                val skdr = Skdr(0,namaDesa,periodeMinggu,namaPenyakit,kodePenyakit,jumlahPenderita)
-                addViewModel.insertData(skdr)
-                Toast.makeText(this,"Success", Toast.LENGTH_SHORT).show()
-            }
+            val skdr = Skdr(0,namaDesa,periodeMinggu,namaPenyakit,kodePenyakit,jumlahPenderita)
+            addViewModel.insertData(skdr)
+            Toast.makeText(this,"Success", Toast.LENGTH_SHORT).show()
+
         }catch(e: Exception){
             Toast.makeText(this,"Error: $e", Toast.LENGTH_LONG).show()
         }
