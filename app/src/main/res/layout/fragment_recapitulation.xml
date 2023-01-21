@@ -59,7 +59,7 @@
             android:id="@+id/recyclerView"
             android:layout_width="0dp"
             android:layout_height="280dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/materialCardView"
@@ -68,7 +68,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -79,7 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/nomor_tujuan"
-                android:layout_margin="5dp"
+                android:layout_margin="8dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -93,14 +93,32 @@
                 app:layout_constraintTop_toTopOf="@+id/tv_label_number_phone" />
 
             <TextView
+                android:id="@+id/label_kunjungan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/total_kunjungan"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toStartOf="@+id/tv_label_number_phone"
+                app:layout_constraintTop_toBottomOf="@+id/tv_label_number_phone" />
+
+            <EditText
+                android:id="@+id/edt_total_kunjungan"
+                android:layout_width="wrap_content"
+                android:inputType="number"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:hint="@string/masukan_total_kunjungan"
+                app:layout_constraintStart_toEndOf="@+id/label_kunjungan"
+                app:layout_constraintTop_toTopOf="@+id/label_kunjungan" />
+
+            <TextView
                 android:id="@+id/label_kode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="72dp"
                 android:text="@string/format_laporan"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/edt_total_kunjungan" />
 
             <TextView
                 android:id="@+id/tv_format_laporan"

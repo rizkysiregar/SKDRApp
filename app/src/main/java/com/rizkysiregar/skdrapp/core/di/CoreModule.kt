@@ -16,7 +16,9 @@ val databaseModule = module {
         Room.databaseBuilder(
             androidContext(),
             SkdrDatabase::class.java, "Skdr.db"
-        ).fallbackToDestructiveMigration().build()
+        ).fallbackToDestructiveMigration()
+            .createFromAsset("Skdr_db.db")
+            .build()
     }
 }
 

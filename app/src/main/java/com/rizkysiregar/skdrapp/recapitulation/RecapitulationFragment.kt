@@ -3,14 +3,16 @@ package com.rizkysiregar.skdrapp.recapitulation
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rizkysiregar.skdrapp.R
-import com.rizkysiregar.skdrapp.core.domain.model.Skdr
 import com.rizkysiregar.skdrapp.core.ui.SkdrAdapter
 import com.rizkysiregar.skdrapp.databinding.FragmentRecapitulationBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -26,7 +28,7 @@ class RecapitulationFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentRecapitulationBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -72,6 +74,7 @@ class RecapitulationFragment : Fragment() {
         }
         val sbWA = StringBuilder()
         val sbSMS = StringBuilder()
+
         recapitulationViewModel.skdr.observe(requireActivity()) {
             skdrAdapter.setData(it)
             sbWA.clear()
@@ -86,15 +89,23 @@ class RecapitulationFragment : Fragment() {
         }
 
         binding.btnWa.setOnClickListener {
-            var number = binding.spNumberPhone.selectedItem.toString()
-           sendWA(sbWA,number)
+            if (binding.edtTotalKunjungan.text.isEmpty()){
+                Toast.makeText(requireActivity(),"Ups..Total Kunjungan masih kosong",Toast.LENGTH_SHORT).show()
+            }else{
+                sbWA.append("#X${binding.edtTotalKunjungan.text}")
+                var number = binding.spNumberPhone.selectedItem.toString()
+                sendWA(sbWA,number)
+            }
         }
-
         binding.btnSms.setOnClickListener {
-            var number = binding.spNumberPhone.selectedItem.toString()
-            sendSms(sbSMS.toString(),number)
+            if (binding.edtTotalKunjungan.text.isEmpty()){
+                Toast.makeText(requireActivity(),"Ups..Total Kunjungan masih kosong",Toast.LENGTH_SHORT).show()
+            }else{
+                sbSMS.append("#X${binding.edtTotalKunjungan.text}")
+                var number = binding.spNumberPhone.selectedItem.toString()
+                sendSms(sbSMS.toString(),number)
+            }
         }
-
     }
 
     private fun sendWA(sb: StringBuilder, number: String){
@@ -102,7 +113,7 @@ class RecapitulationFragment : Fragment() {
             val sendIntent = Intent().apply {
                 action = Intent.ACTION_SEND
                 putExtra(Intent.EXTRA_TEXT, sb.toString())
-                putExtra("jid", "${number}@s.whatsapp.net")
+                putExtra("jid", "+${number}@s.whatsapp.net")
                 type = "text/plain"
                 setPackage("com.whatsapp")
             }

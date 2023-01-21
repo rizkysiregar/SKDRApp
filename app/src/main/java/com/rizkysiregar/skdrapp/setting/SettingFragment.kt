@@ -5,19 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.rizkysiregar.skdrapp.R
 import com.rizkysiregar.skdrapp.core.domain.model.DataPenyakit
 import com.rizkysiregar.skdrapp.core.ui.DataPenyakitAdapter
 import com.rizkysiregar.skdrapp.databinding.FragmentSettingBinding
-import com.rizkysiregar.skdrapp.home.HomeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SettingFragment() : Fragment() {
+
+class SettingFragment : Fragment() {
 
     private var _binding: FragmentSettingBinding? = null
     private val binding get() = _binding!!
@@ -33,17 +31,22 @@ class SettingFragment() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         binding.btnTambah.setOnClickListener{
-            val kode = binding.edtKode.text.toString()
-            val penyakit = binding.edtPenyakit.text.toString()
-            try {
-                val data = DataPenyakit(kode,penyakit)
-                settingViewModel.insertNewData(data)
-                Toast.makeText(requireContext(),"Success", Toast.LENGTH_SHORT).show()
-                binding.edtKode.text?.clear()
-                binding.edtPenyakit.text?.clear()
-            }catch (e: Exception){
-                Toast.makeText(requireContext(),"Erorr: $e", Toast.LENGTH_SHORT).show()
+            if (binding.edtKode.text.isNullOrEmpty() || binding.edtKode.text.isNullOrEmpty() ){
+                Toast.makeText(requireActivity(),"Upss.. Ada kolom yang kosong",Toast.LENGTH_SHORT).show()
+            }else{
+                val kode = binding.edtKode.text.toString()
+                val penyakit = binding.edtPenyakit.text.toString()
+                try {
+                    val data = DataPenyakit(kode,penyakit)
+                    settingViewModel.insertNewData(data)
+                    Toast.makeText(requireContext(),"Success", Toast.LENGTH_SHORT).show()
+                    binding.edtKode.text?.clear()
+                    binding.edtPenyakit.text?.clear()
+                }catch (e: Exception){
+                    Toast.makeText(requireContext(),"Erorr: $e", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 

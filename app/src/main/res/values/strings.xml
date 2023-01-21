@@ -28,6 +28,8 @@
     <string name="setting">Setting</string>
     <string name="penyakit">Penyakit</string>
     <string name="tools_jumlah">12 Orang</string>
+    <string name="total_kunjungan">Total Kunjungan</string>
+    <string name="masukan_total_kunjungan">Masukan total kunjungan</string>
 
     <string-array name="desa_array">
         <item>Natar</item>

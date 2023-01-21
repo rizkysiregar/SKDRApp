@@ -3,11 +3,7 @@ package com.rizkysiregar.skdrapp.add
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
-import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Spinner
 import android.widget.Toast
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,15 +12,13 @@ import com.rizkysiregar.skdrapp.R
 import com.rizkysiregar.skdrapp.core.domain.model.Skdr
 import com.rizkysiregar.skdrapp.core.ui.SkdrAdapter
 import com.rizkysiregar.skdrapp.databinding.ActivityAddDataBinding
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.Locale.Category
+
 
 class AddDataActivity : AppCompatActivity(){
 
     // layout binding
-    lateinit var binding : ActivityAddDataBinding
+    private lateinit var binding : ActivityAddDataBinding
 
     // view model
     private val addViewModel : AddViewModel by viewModel()
@@ -77,7 +71,7 @@ class AddDataActivity : AppCompatActivity(){
     private fun fillSpinner(){
         try{
             val dataNamaPenyakit: ArrayList<String> = ArrayList()
-            addViewModel.getAllDataPenyakit.observe(this){
+            addViewModel.getAllDataPenyakit.observe(this){ it ->
                 it.forEach {
                     dataNamaPenyakit.add(it.namaPenyakit)
                 }
@@ -103,15 +97,37 @@ class AddDataActivity : AppCompatActivity(){
         val periodeMinggu = binding.spMinggu.selectedItem.toString().toInt()
         val jumlahPenderita = binding.edtJumlahPasien.text.toString().toInt()
         val namaPenyakit = binding.spPenyakit.selectedItem.toString()
-        addViewModel.setDataPenyakitByName(namaPenyakit)
+
+        when(namaPenyakit) {
+            "Diare Akut" -> kodePenyakit = "A"
+            "Malaria Konfirmasi" -> kodePenyakit = "B"
+            "Tersangka Demam Dengue" -> kodePenyakit = "C"
+            "Pneumonia" -> kodePenyakit = "D"
+            "Diare Berdarah ATAU Disentri" -> kodePenyakit = "E"
+            "Tersangka Demam Tifoid" -> kodePenyakit = "F"
+            "Sindrom Jaundice Akut" -> kodePenyakit = "G"
+            "Tersangka Chikungunya" -> kodePenyakit = "H"
+            "Tersangka Flu Burung pada Manusia" -> kodePenyakit = "J"
+            "Tersangka Campak" -> kodePenyakit = "K"
+            "Tersangka Difteri" -> kodePenyakit = "L"
+            "Tersangka Pertussis" -> kodePenyakit = "M"
+            "AFP (Lumpuh Layuh Mendadak)" -> kodePenyakit = "N"
+            "Kasus Gigitan Hewan Penular Rabies" -> kodePenyakit = "P"
+            "Tersangka Antraks" -> kodePenyakit = "Q"
+            "Tersangka Leptospirosis" -> kodePenyakit = "R"
+            "Tersangka Kolera" -> kodePenyakit = "S"
+            "Klaster Penyakit yang tidak lazim" -> kodePenyakit = "T"
+            "Tersangka Meningitis/Ensefalitis" -> kodePenyakit = "U"
+            "Tersangka Tetanus Neonatorum" -> kodePenyakit = "V"
+            "Tersangka Tetanus" -> kodePenyakit = "W"
+            "ILI (Influenza Like Ilness)" -> kodePenyakit = "Y"
+            "ILI (Tersangka HFMD (Hand, Foot, Mouth Disease)" -> kodePenyakit = "Z"
+        }
+
         try {
-            addViewModel.dataPenyakit.observe(this){
-                kodePenyakit = it[0].kodePenyakit
-            }
             val skdr = Skdr(0,namaDesa,periodeMinggu,namaPenyakit,kodePenyakit,jumlahPenderita)
             addViewModel.insertData(skdr)
             Toast.makeText(this,"Success", Toast.LENGTH_SHORT).show()
-
         }catch(e: Exception){
             Toast.makeText(this,"Error: $e", Toast.LENGTH_LONG).show()
         }
@@ -142,7 +158,6 @@ class AddDataActivity : AppCompatActivity(){
         })
         itemTouchHelper.attachToRecyclerView(binding.rvTambahData)
     }
-
 }
 
 
