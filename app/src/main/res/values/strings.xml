@@ -28,8 +28,11 @@
     <string name="setting">Setting</string>
     <string name="penyakit">Penyakit</string>
     <string name="tools_jumlah">12 Orang</string>
-    <string name="total_kunjungan">Total Kunjungan</string>
+    <string name="total_kunjungan">Total Kunjungan:</string>
     <string name="masukan_total_kunjungan">Masukan total kunjungan</string>
+
+
+    <string name="started_sub_title">Selamat Datang, Silahkan Login</string>
 
     <string-array name="desa_array">
         <item>Natar</item>
@@ -40,12 +43,20 @@
     </string-array>
 
     <string-array name="nomor_array">
-        <item>6281296100884</item>
+        <item>6281806818193</item>
+        <item>6281144313636</item>
         <item>6281284599747</item>
         <item>6281284599741</item>
         <item>6285714868413</item>
         <item>6285714868415</item>
         <item>6281806818193</item>
+    </string-array>
+
+    <string-array name="year_array">
+        <item>2023</item>
+        <item>2024</item>
+        <item>2025</item>
+        <item>2026</item>
     </string-array>
 
     <string-array name="minngu_array">

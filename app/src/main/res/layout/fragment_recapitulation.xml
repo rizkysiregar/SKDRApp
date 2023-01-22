@@ -12,16 +12,19 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/grey"
+            android:layout_margin="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:padding="4dp"
+                >
 
                 <TextView
                     android:id="@+id/label_periode"
@@ -39,17 +42,32 @@
                     android:id="@+id/sp_minggu_recap"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     app:layout_constraintBottom_toBottomOf="@+id/label_periode"
                     app:layout_constraintStart_toEndOf="@+id/label_periode"
                     app:layout_constraintTop_toTopOf="@+id/label_periode" />
+
+                <Spinner
+                    android:id="@+id/sp_tahun"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/sp_minggu_recap"
+                    app:layout_constraintStart_toEndOf="@+id/sp_minggu_recap"
+                    app:layout_constraintTop_toTopOf="@+id/sp_minggu_recap" />
 
                 <Button
                     android:id="@+id/btn_cari"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
                     android:text="Cari"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:backgroundTint="@color/old_green"
                     app:layout_constraintBottom_toBottomOf="@+id/label_periode"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/sp_tahun"
                     app:layout_constraintTop_toTopOf="@+id/label_periode" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -97,17 +115,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/total_kunjungan"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="24dp"
                 app:layout_constraintStart_toStartOf="@+id/tv_label_number_phone"
                 app:layout_constraintTop_toBottomOf="@+id/tv_label_number_phone" />
 
             <EditText
                 android:id="@+id/edt_total_kunjungan"
                 android:layout_width="wrap_content"
-                android:inputType="number"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:hint="@string/masukan_total_kunjungan"
+                android:inputType="number"
+                app:layout_constraintBottom_toBottomOf="@+id/label_kunjungan"
                 app:layout_constraintStart_toEndOf="@+id/label_kunjungan"
                 app:layout_constraintTop_toTopOf="@+id/label_kunjungan" />
 
@@ -115,6 +134,11 @@
                 android:id="@+id/label_kode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:fontFamily="@font/montserrat"
                 android:text="@string/format_laporan"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -128,7 +152,7 @@
                 android:padding="8dp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:background="@color/teal_200"
+                android:background="@color/grey"
                 app:layout_constraintEnd_toEndOf="@+id/label_kode"
                 app:layout_constraintStart_toStartOf="@+id/label_kode"
                 app:layout_constraintTop_toBottomOf="@+id/label_kode"
@@ -138,6 +162,7 @@
                 android:id="@+id/btn_sms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/old_green"
                 android:text="SMS"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="@+id/btn_wa"
@@ -148,13 +173,12 @@
                 android:id="@+id/btn_wa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/old_green"
                 android:text="WhatsApp"
-                android:layout_marginTop="24dp"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="@+id/tv_format_laporan"
                 app:layout_constraintStart_toStartOf="@+id/tv_format_laporan"
                 app:layout_constraintTop_toBottomOf="@+id/tv_format_laporan" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

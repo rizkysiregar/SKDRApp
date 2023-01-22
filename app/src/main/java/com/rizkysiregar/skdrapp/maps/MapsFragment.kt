@@ -41,9 +41,10 @@ class MapsFragment : Fragment() {
 
     private fun showMarker(mMap: GoogleMap){
         mMap.uiSettings.isZoomControlsEnabled = true
-        mMap.uiSettings.isIndoorLevelPickerEnabled = true
+        mMap.uiSettings.isZoomGesturesEnabled = true
+//        mMap.uiSettings.isIndoorLevelPickerEnabled = true
         mMap.uiSettings.isCompassEnabled = true
-        mMap.uiSettings.isMapToolbarEnabled = true
+//        mMap.uiSettings.isMapToolbarEnabled = true
         var markerLocation = LatLng(-5.244242361783416, 105.22078387730636)
         mapsViewModel.getAllData.observe(this){
             it.forEach { map ->

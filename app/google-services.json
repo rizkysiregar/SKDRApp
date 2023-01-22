@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "205524825396",
+    "project_id": "skdr-app",
+    "storage_bucket": "skdr-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:205524825396:android:2d1e8eebb95ffd299b2161",
+        "android_client_info": {
+          "package_name": "com.rizkysiregar.skdrapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "205524825396-lm3e9j7ql3l2efab7i5lf045koad2oav.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rizkysiregar.skdrapp",
+            "certificate_hash": "7cf2375a16e5e4b3b515bd9b3e66521ad5029e0c"
+          }
+        },
+        {
+          "client_id": "205524825396-odivsml2ggv56lqk8jg0c1qp73529qqu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBucNrk7F86rrVlyQfqeP7YvIkp7azmRY8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "205524825396-9rvh1j384p9bl1sqn421b1k8qant4t5r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

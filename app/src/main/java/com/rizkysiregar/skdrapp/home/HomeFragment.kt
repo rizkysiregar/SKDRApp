@@ -147,7 +147,7 @@ class HomeFragment : Fragment() {
 
         // add a lot of colors to list
         val colors: ArrayList<Int> = ArrayList()
-        colors.add(resources.getColor(R.color.purple_200))
+        colors.add(resources.getColor(R.color.old_green))
         colors.add(resources.getColor(R.color.yellow))
         colors.add(resources.getColor(R.color.red))
 
