@@ -88,7 +88,10 @@ dependencies {
     def espresso_version = '3.5.1'
 
     testImplementation "junit:junit:$junit_version"
+    testImplementation "com.google.truth:truth:1.1.2"
     androidTestImplementation "androidx.test.ext:junit:$ext_junit_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
     androidTestImplementation "androidx.test.espresso:espresso-intents:$espresso_version"
+    //special testing
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
 }

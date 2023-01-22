@@ -94,8 +94,8 @@ class AddDataActivity : AppCompatActivity(){
     private fun setData(){
         var kodePenyakit = ""
         val namaDesa = binding.spDesa.selectedItem.toString()
-        val periodeMinggu = binding.spMinggu.selectedItem.toString().toInt()
-        val jumlahPenderita = binding.edtJumlahPasien.text.toString().toInt()
+        val periodeMinggu = binding.spMinggu.selectedItem.toString()
+        val jumlahPenderita = binding.edtJumlahPasien.text.toString()
         val namaPenyakit = binding.spPenyakit.selectedItem.toString()
 
         when(namaPenyakit) {
@@ -125,9 +125,13 @@ class AddDataActivity : AppCompatActivity(){
         }
 
         try {
-            val skdr = Skdr(0,namaDesa,periodeMinggu,namaPenyakit,kodePenyakit,jumlahPenderita)
-            addViewModel.insertData(skdr)
-            Toast.makeText(this,"Success", Toast.LENGTH_SHORT).show()
+            if(binding.edtJumlahPasien.text.isEmpty()){
+                Toast.makeText(this,"Upss... kolom jumlah pasien kosong!",Toast.LENGTH_SHORT).show()
+            }else{
+                val skdr = Skdr(0,namaDesa,periodeMinggu.toInt(),namaPenyakit,kodePenyakit,jumlahPenderita.toInt())
+                addViewModel.insertData(skdr)
+                Toast.makeText(this,"Success", Toast.LENGTH_SHORT).show()
+            }
         }catch(e: Exception){
             Toast.makeText(this,"Error: $e", Toast.LENGTH_LONG).show()
         }
