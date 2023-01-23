@@ -1,9 +1,5 @@
 package com.rizkysiregar.skdrapp.core.domain.model
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
-
-
 data class Skdr(
     val id: Int,
     val namaDesa: String,
