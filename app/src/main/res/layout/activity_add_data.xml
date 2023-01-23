@@ -86,6 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/simpan"
+        android:backgroundTint="@color/old_green"
         app:layout_constraintBottom_toBottomOf="@+id/edt_jumlah_pasien"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/edt_jumlah_pasien"
@@ -109,6 +110,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Data Terbaru"
+            android:backgroundTint="@color/grey"
             android:textSize="18sp"
             android:fontFamily="@font/roboto_regular"
             android:textStyle="bold"
@@ -127,6 +129,5 @@
             />
 
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
