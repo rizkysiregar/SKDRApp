@@ -94,7 +94,7 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:$ext_junit_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
     androidTestImplementation "androidx.test.espresso:espresso-intents:$espresso_version"
-    //special testing
-    testImplementation "androidx.arch.core:core-testing:2.1.0"
+  
+
 
 }

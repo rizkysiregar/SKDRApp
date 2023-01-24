@@ -8,7 +8,6 @@ import org.junit.runners.JUnit4
 
 @RunWith(JUnit4::class)
 class ValidatorTest {
-
     @Test
     fun whenInputIsValid(){
         val namaDaerah = "Natar"
@@ -18,8 +17,6 @@ class ValidatorTest {
         val data = Validator.validateInput(namaDaerah,namaPenyakit,kodePenyakit,jumlahPenderita)
         assertThat(data).isEqualTo(true)
     }
-
-
     @Test
     fun whenInputIsInValid() {
         val namaDaerah = ""

@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import com.rizkysiregar.skdrapp.core.data.entity.DataPenyakitEntity
 import com.rizkysiregar.skdrapp.core.data.entity.SkdrEntity
 import com.rizkysiregar.skdrapp.core.data.room.SkdrDao
-import com.rizkysiregar.skdrapp.core.domain.model.Skdr
 
 class LocalDataSource constructor(private val skdrDao: SkdrDao) {
     fun getAllData(): LiveData<List<SkdrEntity>> = skdrDao.getAllData()

@@ -14,17 +14,16 @@ import com.rizkysiregar.skdrapp.core.ui.SkdrAdapter
 import com.rizkysiregar.skdrapp.databinding.ActivityAddDataBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class AddDataActivity : AppCompatActivity(){
-
-    // layout binding
-    private lateinit var binding : ActivityAddDataBinding
 
     // view model
     private val addViewModel : AddViewModel by viewModel()
 
     // recycler view
     private lateinit var recyclerView: RecyclerView
+
+    // layout binding
+    private lateinit var binding : ActivityAddDataBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -8,8 +8,6 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.rizkysiregar.skdrapp.core.data.entity.DataPenyakitEntity
 import com.rizkysiregar.skdrapp.core.data.entity.SkdrEntity
-import com.rizkysiregar.skdrapp.core.domain.model.DataPenyakit
-import com.rizkysiregar.skdrapp.core.domain.model.Skdr
 
 @Dao
 interface SkdrDao {
