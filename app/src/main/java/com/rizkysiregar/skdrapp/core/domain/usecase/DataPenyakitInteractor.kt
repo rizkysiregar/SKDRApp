@@ -8,5 +8,4 @@ class DataPenyakitInteractor(private val dataPenyakitRepository: IDataPenyakitRe
     override fun getAllDataPenyakit(): LiveData<List<DataPenyakit>> = dataPenyakitRepository.getAllDataPenyakit()
     override fun insertNewDataPenyakit(dataPenyakit: DataPenyakit) = dataPenyakitRepository.insertData(dataPenyakit)
     override fun deleteDataPenyakit(dataPenyakit: DataPenyakit) = dataPenyakitRepository.deleteDataPenyakit(dataPenyakit)
-    override fun getDataByName(name: String): LiveData<List<DataPenyakit>> = dataPenyakitRepository.getDataByName(name)
 }

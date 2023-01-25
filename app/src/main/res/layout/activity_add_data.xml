@@ -47,18 +47,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nama_penyakit"
-
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="@+id/label_sp_desa"
-        app:layout_constraintTop_toTopOf="@+id/sp_penyakit" />
+        app:layout_constraintTop_toBottomOf="@+id/label_sp_desa" />
+
+    <TextView
+        android:id="@+id/tv_kode_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/sp_minggu"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintHorizontal_bias="0.852"
+        app:layout_constraintStart_toEndOf="@+id/sp_minggu"
+        app:layout_constraintTop_toTopOf="@+id/sp_minggu"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="A" />
 
     <Spinner
         android:id="@+id/sp_penyakit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/label_sp_penyakit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/sp_desa"
-        app:layout_constraintTop_toBottomOf="@+id/sp_desa" />
+        app:layout_constraintTop_toTopOf="@+id/label_sp_penyakit" />
 
     <TextView
         android:id="@+id/label_sp_jumlah"

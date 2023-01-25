@@ -20,10 +20,6 @@ interface SkdrDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertSkdr(skdr: SkdrEntity)
 
-    // query get kode by name
-    @Query("SELECT * FROM data_penyakit WHERE nama_penyakit LIKE :nama")
-    fun getKodeByName(nama: String): LiveData<List<DataPenyakitEntity>>
-
     // get data from table dataPenyakit
     @Query("SELECT * FROM data_penyakit")
     fun getAllDataPenyakit(): LiveData<List<DataPenyakitEntity>>

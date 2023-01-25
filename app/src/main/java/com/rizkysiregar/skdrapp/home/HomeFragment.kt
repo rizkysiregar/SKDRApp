@@ -162,7 +162,7 @@ class HomeFragment : Fragment() {
             requireContext(),
             R.color.red
         ))
-        
+
         // on below line we are setting colors.
         dataSet.colors = colors
 
@@ -185,7 +185,6 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 
 
 }

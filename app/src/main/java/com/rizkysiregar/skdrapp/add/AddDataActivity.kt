@@ -3,6 +3,9 @@ package com.rizkysiregar.skdrapp.add
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -12,9 +15,11 @@ import com.rizkysiregar.skdrapp.R
 import com.rizkysiregar.skdrapp.core.domain.model.Skdr
 import com.rizkysiregar.skdrapp.core.ui.SkdrAdapter
 import com.rizkysiregar.skdrapp.databinding.ActivityAddDataBinding
+import kotlinx.coroutines.runBlocking
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class AddDataActivity : AppCompatActivity(){
+
+class AddDataActivity : AppCompatActivity() {
 
     // view model
     private val addViewModel : AddViewModel by viewModel()
@@ -25,12 +30,15 @@ class AddDataActivity : AppCompatActivity(){
     // layout binding
     private lateinit var binding : ActivityAddDataBinding
 
+    private lateinit var namaPenyakit: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddDataBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // populate namaPenyakit from db
+        fillSpinner()
 
         ArrayAdapter.createFromResource(
             this,
@@ -41,7 +49,6 @@ class AddDataActivity : AppCompatActivity(){
             binding.spDesa.adapter = it
         }
 
-
         ArrayAdapter.createFromResource(
             this,
             R.array.minngu_array,
@@ -51,12 +58,10 @@ class AddDataActivity : AppCompatActivity(){
             binding.spMinggu.adapter = it
         }
 
-        // populate data penyakit from db
-        fillSpinner()
 
         // insert data
         binding.btnSubmit.setOnClickListener {
-            setData()
+            setInsertData()
         }
 
         // recyclerview init
@@ -67,62 +72,12 @@ class AddDataActivity : AppCompatActivity(){
         showRecyclerView()
     }
 
-    private fun fillSpinner(){
-        try{
-            val dataNamaPenyakit: ArrayList<String> = ArrayList()
-            addViewModel.getAllDataPenyakit.observe(this){ it ->
-                it.forEach {
-                    dataNamaPenyakit.add(it.namaPenyakit)
-                }
-                val arrayAdapter = ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,dataNamaPenyakit)
-                binding.spPenyakit.adapter = arrayAdapter
-            }
-        }catch (e: Exception){
-            e.printStackTrace()
-        }
-    }
-
-    private fun showRecyclerView(){
-        val skdrAdapter = SkdrAdapter()
-        addViewModel.getAllData.observe(this){
-            skdrAdapter.setData(it)
-        }
-        recyclerView.adapter = skdrAdapter
-    }
-
-    private fun setData(){
-        var kodePenyakit = ""
+    private fun setInsertData(){
         val namaDesa = binding.spDesa.selectedItem.toString()
         val periodeMinggu = binding.spMinggu.selectedItem.toString()
         val jumlahPenderita = binding.edtJumlahPasien.text.toString()
         val namaPenyakit = binding.spPenyakit.selectedItem.toString()
-
-        when(namaPenyakit) {
-            "Diare Akut" -> kodePenyakit = "A"
-            "Malaria Konfirmasi" -> kodePenyakit = "B"
-            "Tersangka Demam Dengue" -> kodePenyakit = "C"
-            "Pneumonia" -> kodePenyakit = "D"
-            "Diare Berdarah ATAU Disentri" -> kodePenyakit = "E"
-            "Tersangka Demam Tifoid" -> kodePenyakit = "F"
-            "Sindrom Jaundice Akut" -> kodePenyakit = "G"
-            "Tersangka Chikungunya" -> kodePenyakit = "H"
-            "Tersangka Flu Burung pada Manusia" -> kodePenyakit = "J"
-            "Tersangka Campak" -> kodePenyakit = "K"
-            "Tersangka Difteri" -> kodePenyakit = "L"
-            "Tersangka Pertussis" -> kodePenyakit = "M"
-            "AFP (Lumpuh Layuh Mendadak)" -> kodePenyakit = "N"
-            "Kasus Gigitan Hewan Penular Rabies" -> kodePenyakit = "P"
-            "Tersangka Antraks" -> kodePenyakit = "Q"
-            "Tersangka Leptospirosis" -> kodePenyakit = "R"
-            "Tersangka Kolera" -> kodePenyakit = "S"
-            "Klaster Penyakit yang tidak lazim" -> kodePenyakit = "T"
-            "Tersangka Meningitis/Ensefalitis" -> kodePenyakit = "U"
-            "Tersangka Tetanus Neonatorum" -> kodePenyakit = "V"
-            "Tersangka Tetanus" -> kodePenyakit = "W"
-            "ILI (Influenza Like Ilness)" -> kodePenyakit = "Y"
-            "ILI (Tersangka HFMD (Hand, Foot, Mouth Disease)" -> kodePenyakit = "Z"
-        }
-
+        val kodePenyakit = binding.tvKodeAdd.text.toString()
         try {
             if(binding.edtJumlahPasien.text.isEmpty()){
                 Toast.makeText(this,"Upss... kolom jumlah pasien kosong!",Toast.LENGTH_SHORT).show()
@@ -134,6 +89,43 @@ class AddDataActivity : AppCompatActivity(){
         }catch(e: Exception){
             Toast.makeText(this,"Error: $e", Toast.LENGTH_LONG).show()
         }
+    }
+
+    private fun fillSpinner(){
+        try{
+            val dataNamaPenyakit: ArrayList<String> = ArrayList()
+            val kode: ArrayList<String> = ArrayList()
+            addViewModel.getAllDataPenyakit.observe(this){ it ->
+                it.forEach {
+                    dataNamaPenyakit.add(it.namaPenyakit)
+                    kode.add(it.kodePenyakit)
+                }
+                val arrayAdapter = ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,dataNamaPenyakit)
+                binding.spPenyakit.adapter = arrayAdapter
+                binding.spPenyakit.setSelection(arrayAdapter.getPosition("Diare Akut"))
+                binding.spPenyakit.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+                    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                       binding.tvKodeAdd.text = kode.get(position)
+                    }
+
+                    override fun onNothingSelected(p0: AdapterView<*>?) {
+
+                    }
+
+                }
+            }
+        }catch (e: Exception){
+            e.printStackTrace()
+        }
+    }
+
+
+    private fun showRecyclerView(){
+        val skdrAdapter = SkdrAdapter()
+        addViewModel.getAllData.observe(this){
+            skdrAdapter.setData(it)
+        }
+        recyclerView.adapter = skdrAdapter
     }
 
     private fun initAction(){
@@ -162,5 +154,32 @@ class AddDataActivity : AppCompatActivity(){
         itemTouchHelper.attachToRecyclerView(binding.rvTambahData)
     }
 }
+
+
+//when(namaPenyakit) {
+//    "Diare Akut" -> kodePenyakit = "A"
+//    "Malaria Konfirmasi" -> kodePenyakit = "B"
+//    "Tersangka Demam Dengue" -> kodePenyakit = "C"
+//    "Pneumonia" -> kodePenyakit = "D"
+//    "Diare Berdarah ATAU Disentri" -> kodePenyakit = "E"
+//    "Tersangka Demam Tifoid" -> kodePenyakit = "F"
+//    "Sindrom Jaundice Akut" -> kodePenyakit = "G"
+//    "Tersangka Chikungunya" -> kodePenyakit = "H"
+//    "Tersangka Flu Burung pada Manusia" -> kodePenyakit = "J"
+//    "Tersangka Campak" -> kodePenyakit = "K"
+//    "Tersangka Difteri" -> kodePenyakit = "L"
+//    "Tersangka Pertussis" -> kodePenyakit = "M"
+//    "AFP (Lumpuh Layuh Mendadak)" -> kodePenyakit = "N"
+//    "Kasus Gigitan Hewan Penular Rabies" -> kodePenyakit = "P"
+//    "Tersangka Antraks" -> kodePenyakit = "Q"
+//    "Tersangka Leptospirosis" -> kodePenyakit = "R"
+//    "Tersangka Kolera" -> kodePenyakit = "S"
+//    "Klaster Penyakit yang tidak lazim" -> kodePenyakit = "T"
+//    "Tersangka Meningitis/Ensefalitis" -> kodePenyakit = "U"
+//    "Tersangka Tetanus Neonatorum" -> kodePenyakit = "V"
+//    "Tersangka Tetanus" -> kodePenyakit = "W"
+//    "ILI (Influenza Like Ilness)" -> kodePenyakit = "Y"
+//    "ILI (Tersangka HFMD (Hand, Foot, Mouth Disease)" -> kodePenyakit = "Z"
+//}
 
 

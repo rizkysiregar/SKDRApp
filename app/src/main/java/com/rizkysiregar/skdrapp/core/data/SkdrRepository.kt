@@ -35,11 +35,6 @@ class SkdrRepository constructor(
         appExecutors.diskIO().execute { localDataSource.deleteDataSkdr(dataSkdr) }
     }
 
-    override fun getDataByName(name: String): LiveData<List<DataPenyakit>> {
-        return Transformations.map(localDataSource.getKodePenyakitByName(name)){
-            DataMapper.mapDataPenyakitEntitiesToDomain(it)
-        }
-    }
 
     override fun getAllDataPenyakit(): LiveData<List<DataPenyakit>> {
         return Transformations.map(localDataSource.getAllDataPenyakit()){

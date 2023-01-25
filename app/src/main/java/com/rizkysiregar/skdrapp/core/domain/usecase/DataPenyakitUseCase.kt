@@ -8,5 +8,4 @@ interface DataPenyakitUseCase {
     fun getAllDataPenyakit(): LiveData<List<DataPenyakit>>
     fun insertNewDataPenyakit(dataPenyakit: DataPenyakit)
     fun deleteDataPenyakit(dataPenyakit: DataPenyakit)
-    fun getDataByName(name:String): LiveData<List<DataPenyakit>>
 }

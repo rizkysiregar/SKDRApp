@@ -9,5 +9,4 @@ interface ISkdrRepository {
     fun insertData(skdr: Skdr)
     fun getAllDataByPeriodic(periodic: Int): LiveData<List<Skdr>>
     fun deleteData(skdr: Skdr)
-    fun getDataByName(name: String): LiveData<List<DataPenyakit>>
 }
