@@ -156,30 +156,4 @@ class AddDataActivity : AppCompatActivity() {
 }
 
 
-//when(namaPenyakit) {
-//    "Diare Akut" -> kodePenyakit = "A"
-//    "Malaria Konfirmasi" -> kodePenyakit = "B"
-//    "Tersangka Demam Dengue" -> kodePenyakit = "C"
-//    "Pneumonia" -> kodePenyakit = "D"
-//    "Diare Berdarah ATAU Disentri" -> kodePenyakit = "E"
-//    "Tersangka Demam Tifoid" -> kodePenyakit = "F"
-//    "Sindrom Jaundice Akut" -> kodePenyakit = "G"
-//    "Tersangka Chikungunya" -> kodePenyakit = "H"
-//    "Tersangka Flu Burung pada Manusia" -> kodePenyakit = "J"
-//    "Tersangka Campak" -> kodePenyakit = "K"
-//    "Tersangka Difteri" -> kodePenyakit = "L"
-//    "Tersangka Pertussis" -> kodePenyakit = "M"
-//    "AFP (Lumpuh Layuh Mendadak)" -> kodePenyakit = "N"
-//    "Kasus Gigitan Hewan Penular Rabies" -> kodePenyakit = "P"
-//    "Tersangka Antraks" -> kodePenyakit = "Q"
-//    "Tersangka Leptospirosis" -> kodePenyakit = "R"
-//    "Tersangka Kolera" -> kodePenyakit = "S"
-//    "Klaster Penyakit yang tidak lazim" -> kodePenyakit = "T"
-//    "Tersangka Meningitis/Ensefalitis" -> kodePenyakit = "U"
-//    "Tersangka Tetanus Neonatorum" -> kodePenyakit = "V"
-//    "Tersangka Tetanus" -> kodePenyakit = "W"
-//    "ILI (Influenza Like Ilness)" -> kodePenyakit = "Y"
-//    "ILI (Tersangka HFMD (Hand, Foot, Mouth Disease)" -> kodePenyakit = "Z"
-//}
-
 
