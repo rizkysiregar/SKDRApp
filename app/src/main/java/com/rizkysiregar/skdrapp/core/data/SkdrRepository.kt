@@ -48,12 +48,12 @@ class SkdrRepository constructor(
     }
 
     override fun insertData(dataPenyakit: DataPenyakit) {
-        val dataPenyakit = DataMapper.mapDataPenyakitDomainToEntity(dataPenyakit)
-        appExecutors.diskIO().execute { localDataSource.insertDataPenyakit(dataPenyakit) }
+        val data = DataMapper.mapDataPenyakitDomainToEntity(dataPenyakit)
+        appExecutors.diskIO().execute { localDataSource.insertDataPenyakit(data) }
     }
 
     override fun deleteDataPenyakit(dataPenyakit: DataPenyakit) {
-        val dataPenyakit = DataMapper.mapDataPenyakitDomainToEntity(dataPenyakit)
-        appExecutors.diskIO().execute { localDataSource.deleteDataPenyakit(dataPenyakit) }
+        val data = DataMapper.mapDataPenyakitDomainToEntity(dataPenyakit)
+        appExecutors.diskIO().execute { localDataSource.deleteDataPenyakit(data) }
     }
 }

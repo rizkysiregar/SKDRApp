@@ -1,6 +1,7 @@
 package com.rizkysiregar.skdrapp.home
 
 import android.content.Intent
+import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
@@ -9,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.mikephil.charting.animation.Easing
@@ -147,10 +149,20 @@ class HomeFragment : Fragment() {
 
         // add a lot of colors to list
         val colors: ArrayList<Int> = ArrayList()
-        colors.add(resources.getColor(R.color.old_green))
-        colors.add(resources.getColor(R.color.yellow))
-        colors.add(resources.getColor(R.color.red))
 
+        colors.add(ContextCompat.getColor(
+            requireContext(),
+            R.color.old_green
+            ))
+        colors.add(ContextCompat.getColor(
+            requireContext(),
+            R.color.yellow
+        ))
+        colors.add(ContextCompat.getColor(
+            requireContext(),
+            R.color.red
+        ))
+        
         // on below line we are setting colors.
         dataSet.colors = colors
 
