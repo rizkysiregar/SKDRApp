@@ -1,7 +1,6 @@
 package com.rizkysiregar.skdrapp.home
 
 import android.content.Intent
-import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
@@ -11,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.PieChart

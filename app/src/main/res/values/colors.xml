@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="purple_200">#DEF5E5</color>
-    <color name="purple_500">#BCEAD5</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#9ED5C5</color>
     <color name="teal_700">#8EC3B0</color>
@@ -10,9 +9,7 @@
     <color name="grey">#F2F2F2</color>
     <color name="yellow">#FFEB3B</color>
     <color name="red">#F44336</color>
-    <color name="green">#8EC3B0</color>
     <color name="old_green">#03C988</color>
-    <color name="blue">#2196F3</color>
 
 
     // pie chart color

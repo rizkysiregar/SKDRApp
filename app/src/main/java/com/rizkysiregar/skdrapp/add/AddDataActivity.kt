@@ -15,7 +15,6 @@ import com.rizkysiregar.skdrapp.R
 import com.rizkysiregar.skdrapp.core.domain.model.Skdr
 import com.rizkysiregar.skdrapp.core.ui.SkdrAdapter
 import com.rizkysiregar.skdrapp.databinding.ActivityAddDataBinding
-import kotlinx.coroutines.runBlocking
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -30,7 +29,6 @@ class AddDataActivity : AppCompatActivity() {
     // layout binding
     private lateinit var binding : ActivityAddDataBinding
 
-    private lateinit var namaPenyakit: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

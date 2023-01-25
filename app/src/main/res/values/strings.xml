@@ -1,17 +1,9 @@
 <resources>
     <string name="app_name">SKDR App</string>
-    <string name="skdr">SKDR</string>
-    <string name="title_desc">Sistem Kewaspadaan Dini dan Respon</string>
     <string name="title_home">Home</string>
     <string name="title_maps">Maps</string>
-    <string name="title_about">About</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="fab_add_desc">navigate to add activity</string>
-    <string name="pilih_desa">Pilih Desa: </string>
-    <string name="minggu_ke">Minggu Ke- </string>
-    <string name="tv_umlah_penderita">Jumlah Penderita: </string>
-    <string name="edt_jumlah_penderita"></string>
     <string name="tambah_data">Tambah Data</string>
     <string name="nama_desa">Nama Desa:</string>
     <string name="data_minggu_ke">Data Minggu Ke-</string>
@@ -19,8 +11,6 @@
     <string name="jumlah_penderita">Jumlah Penderita: </string>
     <string name="simpan">Simpan</string>
     <string name="malaria_mix">Tersangka HFMD(Hand, Foot, Mouth Disease"</string>
-    <string name="periode_minggu">Periode Minggu</string>
-    <string name="number_minggu">1</string>
     <string name="kode">Kode</string>
     <string name="recap">Recap</string>
     <string name="nomor_tujuan">Nomor Tujuan:</string>
@@ -33,6 +23,13 @@
 
 
     <string name="started_sub_title">Selamat Datang, Silahkan Login</string>
+    <string name="masukan_jumlah_penderita">Masukan Jumlah Penderita</string>
+    <string name="data_terbaru">Data Terbaru</string>
+    <string name="periode_minggu">Periode Minggu</string>
+    <string name="cari">Cari</string>
+    <string name="sms">SMS</string>
+    <string name="whatsapp">WhatsApp</string>
+    <string name="logo_app">logo_app</string>
 
     <string-array name="desa_array">
         <item>Natar</item>
