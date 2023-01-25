@@ -25,7 +25,6 @@ class AddActivityTest {
     fun setup(){
         ActivityScenario.launch(MainActivity::class.java)
     }
-
     private fun getTopActivity() : Activity? {
         var activity : Activity? = null
         InstrumentationRegistry.getInstrumentation().runOnMainSync {
@@ -39,7 +38,6 @@ class AddActivityTest {
         }
         return activity
     }
-
     @Test
     fun displayAddDataActivity(){
         onView(withId(R.id.fab_add)).check(matches(isDisplayed()))
