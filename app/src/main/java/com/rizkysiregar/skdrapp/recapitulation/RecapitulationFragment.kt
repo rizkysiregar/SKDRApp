@@ -3,8 +3,6 @@ package com.rizkysiregar.skdrapp.recapitulation
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rizkysiregar.skdrapp.R
+import com.rizkysiregar.skdrapp.core.domain.model.Skdr
 import com.rizkysiregar.skdrapp.core.ui.SkdrAdapter
 import com.rizkysiregar.skdrapp.databinding.FragmentRecapitulationBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -67,8 +66,7 @@ class RecapitulationFragment : Fragment() {
             it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             binding.spTahun.adapter = it
         }
-
-
+        
         // Adapter RecyclerView
         val skdrAdapter = SkdrAdapter()
         with(binding.recyclerView){
@@ -80,7 +78,7 @@ class RecapitulationFragment : Fragment() {
         // get data by periodic (weekly)
         recapitulationViewModel.setSkdrPeriodic(1)
         binding.btnCari.setOnClickListener {
-            var periodic = binding.spMingguRecap.selectedItem.toString().toInt()
+            val periodic = binding.spMingguRecap.selectedItem.toString().toInt()
             recapitulationViewModel.setSkdrPeriodic(periodic)
         }
         val sbWA = StringBuilder()
@@ -88,13 +86,15 @@ class RecapitulationFragment : Fragment() {
 
         recapitulationViewModel.skdr.observe(requireActivity()) {
             skdrAdapter.setData(it)
-            sbWA.clear()
-            sbSMS.clear()
-            sbWA.append("SKDR ${binding.spMingguRecap.selectedItem}#2023")
-            sbSMS.append("MANUAL#${binding.spMingguRecap.selectedItem}")
-            for (skdr in it){
-                sbWA.append("#${skdr.kodePenyakit}${skdr.jumlahPenderita}")
-                sbSMS.append("#${skdr.kodePenyakit}${skdr.jumlahPenderita}")
+            sumSameData(it).also { result ->
+                sbWA.clear()
+                sbSMS.clear()
+                sbWA.append("SKDR ${binding.spMingguRecap.selectedItem}#2023")
+                sbSMS.append("MANUAL#${binding.spMingguRecap.selectedItem}")
+                for (skdr in result){
+                    sbWA.append("#${skdr.kodePenyakit}${skdr.jumlahPenderita}")
+                    sbSMS.append("#${skdr.kodePenyakit}${skdr.jumlahPenderita}")
+                }
             }
             binding.tvFormatLaporan.text = sbWA
         }
@@ -102,7 +102,7 @@ class RecapitulationFragment : Fragment() {
             if (binding.edtTotalKunjungan.text.isEmpty()){
                 Toast.makeText(requireActivity(),"Ups..Total Kunjungan masih kosong",Toast.LENGTH_SHORT).show()
             }else{
-                var number = binding.spNumberPhone.selectedItem.toString()
+                val number = binding.spNumberPhone.selectedItem.toString()
                 sbWA.append("#X${binding.edtTotalKunjungan.text}")
                 sendWA(sbWA.toString(),number)
             }
@@ -111,16 +111,14 @@ class RecapitulationFragment : Fragment() {
             if (binding.edtTotalKunjungan.text.isEmpty()){
                 Toast.makeText(requireActivity(),"Ups..Total Kunjungan masih kosong",Toast.LENGTH_SHORT).show()
             }else{
-                var number = binding.spNumberPhone.selectedItem.toString()
+                val number = binding.spNumberPhone.selectedItem.toString()
                 sbSMS.append("#X${binding.edtTotalKunjungan.text}")
-//                var number = binding.spNumberPhone.selectedItem.toString()
                 sendSms(sbSMS.toString(),number)
             }
         }
     }
 
     private fun sendWA(sb: String, number: String){
-
         startActivity(
             Intent(
                 Intent.ACTION_VIEW,
@@ -129,24 +127,6 @@ class RecapitulationFragment : Fragment() {
                 )
             )
         )
-//        try {
-//            val sendIntent = Intent().apply {
-//                action = Intent.ACTION_SEND
-//                putExtra(Intent.EXTRA_TEXT, sb)
-//                putExtra("jid", "${number}@s.whatsapp.net")
-//                type = "text/plain"
-//                setPackage("com.whatsapp")
-//            }
-//            startActivity(sendIntent)
-//        }catch (e: Exception){
-//            e.printStackTrace()
-//            val appPackageName = "com.whatsapp"
-//            try {
-//                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$appPackageName")))
-//            }catch (e: android.content.ActivityNotFoundException){
-//                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$appPackageName")))
-//            }
-//        }
     }
 
     private fun sendSms(message: String, phone: String){
@@ -160,5 +140,15 @@ class RecapitulationFragment : Fragment() {
         startActivity(intent)
     }
 
-
+    private fun sumSameData(data : List<Skdr>): List<Skdr> {
+        val sum = (data)
+            .groupBy { it.kodePenyakit }
+            .values
+            .map {
+                it.reduce{
+                    acc, item -> Skdr(0,item.namaDesa,item.periodeMinggu,item.namaPenyakit,item.kodePenyakit,acc.jumlahPenderita + item.jumlahPenderita)
+                }
+            }
+        return sum
+    }
 }
