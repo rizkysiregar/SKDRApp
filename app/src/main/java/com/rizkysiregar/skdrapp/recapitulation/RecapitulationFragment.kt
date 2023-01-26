@@ -66,7 +66,7 @@ class RecapitulationFragment : Fragment() {
             it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             binding.spTahun.adapter = it
         }
-        
+
         // Adapter RecyclerView
         val skdrAdapter = SkdrAdapter()
         with(binding.recyclerView){
