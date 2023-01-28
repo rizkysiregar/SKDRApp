@@ -77,7 +77,7 @@ class AddDataActivity : AppCompatActivity() {
         val namaPenyakit = binding.spPenyakit.selectedItem.toString()
         val kodePenyakit = binding.tvKodeAdd.text.toString()
         try {
-            if(binding.edtJumlahPasien.text.isEmpty()){
+            if(binding.edtJumlahPasien.text.isEmpty() || jumlahPenderita.toInt() < 1 ){
                 Toast.makeText(this,"Upss... kolom jumlah pasien kosong!",Toast.LENGTH_SHORT).show()
             }else{
                 val skdr = Skdr(0,namaDesa,periodeMinggu.toInt(),namaPenyakit,kodePenyakit,jumlahPenderita.toInt())
@@ -107,7 +107,7 @@ class AddDataActivity : AppCompatActivity() {
                     }
 
                     override fun onNothingSelected(p0: AdapterView<*>?) {
-
+                        // do nothing
                     }
 
                 }
