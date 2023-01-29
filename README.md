@@ -5,3 +5,7 @@ Aplikasi ini rancang dan dikembangkan dengan menggunakan Clean Architecture seba
 
 ## Visualisasi Fitur
 <img src="https://github.com/rizkysiregar/SKDRApp/blob/master/visualization/splash.gif" />
+<img src="https://github.com/rizkysiregar/SKDRApp/blob/master/visualization/home.gif" />
+<img src="https://github.com/rizkysiregar/SKDRApp/blob/master/visualization/add.gif" />
+<img src="https://github.com/rizkysiregar/SKDRApp/blob/master/visualization/maps.gif" />
+<img src="https://github.com/rizkysiregar/SKDRApp/blob/master/visualization/recapitulation.gif" />
