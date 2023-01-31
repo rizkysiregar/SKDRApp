@@ -7,6 +7,13 @@ Aplikasi ini rancang dan dikembangkan dengan menggunakan Clean Architecture seba
 <img src="https://github.com/rizkysiregar/SKDRApp/blob/master/visualization/splash.gif" width="200" /> <img src="https://github.com/rizkysiregar/SKDRApp/blob/master/visualization/home.gif" width="200" /> <img src="https://github.com/rizkysiregar/SKDRApp/blob/master/visualization/add.gif" width="200" /> <img src="https://github.com/rizkysiregar/SKDRApp/blob/master/visualization/maps.gif" width="200" /> <img src="https://github.com/rizkysiregar/SKDRApp/blob/master/visualization/recapitulation.gif" width="200" />
 
 ## Clean Architecture 
+Menerapakan prinsip-prinsip dari desain arsitektur yang dikembangkan oleh Robert Cecil Martin yang dapat dilihat pada blog pribadinya pada halaman berikut:
+https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
 
 
 ## Dependency Injection
+Menerapakan creational desain pattern yaitu dependency injection, library yang digunakan adalah Koin yang dapat dilihat dokumentasi resminya pada halaman berikut ini :
+https://insert-koin.io/
+
+Ikuti juga repository github dari libarary koin ini pada alamat berikut:
+https://github.com/InsertKoinIO/koin
