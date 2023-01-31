@@ -1,5 +1,5 @@
 ## W2 SKDRApp - Sistem Kewaspadaan Dini dan Respon
-Merupakan sebuah aplikasi yang dikembangan untuk membantu melakuka pengelolaan dan pelaporan data mingguan yang digunakan untuk kepentingan dari sistem kewaspadaan dini dan respon. 
+Merupakan sebuah aplikasi yang dikembangan untuk membantu melakukan pengelolaan dan pelaporan data mingguan yang digunakan untuk kepentingan dari sistem kewaspadaan dini dan respon. 
 Aplikasi ini rancang dan dikembangkan dengan menggunakan Clean Architecture sebagai pola desain dari pembentukan arsitektur sistem aplikasi juga menggunkan Dependency Injection yang membantu aplikasi dalam penerapkan clean code.
 
 
@@ -15,5 +15,5 @@ https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
 Menerapakan creational desain pattern yaitu dependency injection, library yang digunakan adalah Koin yang dapat dilihat dokumentasi resminya pada halaman berikut ini :
 https://insert-koin.io/
 
-Ikuti juga repository github dari libarary koin ini pada alamat berikut:
+Ikuti juga repository github dari library koin ini pada alamat berikut:
 https://github.com/InsertKoinIO/koin
