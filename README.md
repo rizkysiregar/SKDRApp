@@ -4,7 +4,7 @@ Aplikasi ini rancang dan dikembangkan dengan menggunakan Clean Architecture seba
 
 
 ## Visualisasi Fitur
-<img src="https://github.com/rizkysiregar/SKDRApp/blob/master/visualization/splash.gif" width="200" /> <img src="https://github.com/rizkysiregar/SKDRApp/blob/master/visualization/home.gif" width="200" /> <img src="https://github.com/rizkysiregar/SKDRApp/blob/master/visualization/add.gif" width="200" /> <img src="https://github.com/rizkysiregar/SKDRApp/blob/master/visualization/maps.gif" width="200" /> <img src="https://github.com/rizkysiregar/SKDRApp/blob/master/visualization/recapitulation.gif" width="200" />
+<img src="https://github.com/rizkysiregar/SKDRApp/blob/master/visualization/splash.gif" width="200" /> <img src="https://github.com/rizkysiregar/SKDRApp/blob/master/visualization/home_visual.gif" width="200" /> <img src="https://github.com/rizkysiregar/SKDRApp/blob/master/visualization/add.gif" width="200" /> <img src="https://github.com/rizkysiregar/SKDRApp/blob/master/visualization/maps.gif" width="200" /> <img src="https://github.com/rizkysiregar/SKDRApp/blob/master/visualization/recapitulation.gif" width="200" />
 
 ## Clean Architecture 
 Menerapakan prinsip-prinsip dari desain arsitektur yang dikembangkan oleh Robert Cecil Martin yang dapat dilihat pada blog pribadinya pada halaman berikut:
