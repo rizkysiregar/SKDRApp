@@ -64,6 +64,23 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+        <TextView
+            android:id="@+id/tv_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/upss_data_kosong"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:visibility="gone"
+            android:fontFamily="@font/montserrat"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.69" />
+
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/pieChart"
             android:layout_width="250dp"
@@ -94,8 +111,6 @@
             android:src="@drawable/ic_baseline_playlist_add_24"
             android:contentDescription="@string/fab_add_desc" />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </FrameLayout>

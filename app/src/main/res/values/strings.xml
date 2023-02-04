@@ -30,6 +30,7 @@
     <string name="sms">SMS</string>
     <string name="whatsapp">WhatsApp</string>
     <string name="logo_app">logo_app</string>
+    <string name="upss_data_kosong">Upss.. Data Kosong!</string>
 
     <string-array name="desa_array">
         <item>Natar</item>
