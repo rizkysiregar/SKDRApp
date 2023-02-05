@@ -105,7 +105,6 @@ class AddDataActivity : AppCompatActivity() {
                     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                        binding.tvKodeAdd.text = kode.get(position)
                     }
-
                     override fun onNothingSelected(p0: AdapterView<*>?) {
                         // do nothing
                     }

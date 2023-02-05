@@ -81,6 +81,7 @@ class RecapitulationFragment : Fragment() {
             val periodic = binding.spMingguRecap.selectedItem.toString().toInt()
             recapitulationViewModel.setSkdrPeriodic(periodic)
         }
+
         val sbWA = StringBuilder()
         val sbSMS = StringBuilder()
 
@@ -89,7 +90,7 @@ class RecapitulationFragment : Fragment() {
             sumSameData(it).also { result ->
                 sbWA.clear()
                 sbSMS.clear()
-                sbWA.append("SKDR ${binding.spMingguRecap.selectedItem}#2023")
+                sbWA.append("SKDR ${binding.spMingguRecap.selectedItem}#${binding.spTahun.selectedItem}")
                 sbSMS.append("MANUAL#${binding.spMingguRecap.selectedItem}")
                 for (skdr in result){
                     sbWA.append("#${skdr.kodePenyakit}${skdr.jumlahPenderita}")

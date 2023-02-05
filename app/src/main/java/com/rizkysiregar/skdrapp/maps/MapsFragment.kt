@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -13,8 +14,11 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.rizkysiregar.skdrapp.R
+import com.rizkysiregar.skdrapp.core.domain.model.Skdr
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlin.math.min
 
 class MapsFragment : Fragment() {
 
@@ -44,8 +48,8 @@ class MapsFragment : Fragment() {
         mMap.uiSettings.isCompassEnabled = true
         mMap.uiSettings.isMapToolbarEnabled = true
         var markerLocation = LatLng(-5.244242361783416, 105.22078387730636)
-        mapsViewModel.getAllData.observe(this){
-            it.forEach { map ->
+        mapsViewModel.getAllData.observe(this){ list ->
+            list.forEach { map ->
                 when(map.namaDesa){
                     "Natar" -> markerLocation = LatLng(-5.241846069680059, 105.24069875772317)
                     "Negara Ratu" -> markerLocation = LatLng(-5.316462360596307, 105.1775949791341)
@@ -53,12 +57,32 @@ class MapsFragment : Fragment() {
                     "Kalisari" -> markerLocation = LatLng(-5.306940725477708, 105.21995813845814)
                     "Merak Batin" -> markerLocation = LatLng(-5.313570088532476, 105.1968635083637)
                 }
-                mMap.addMarker(MarkerOptions().position(markerLocation).title(map.namaDesa).snippet("kode:${map.kodePenyakit}, kasus:${map.jumlahPenderita}"))
+
+                mMap.addMarker(MarkerOptions().position(markerLocation).title(map.namaDesa).snippet("Kode: ${map.kodePenyakit}, Kasus: ${map.jumlahPenderita}, Minggu Ke: ${map.periodeMinggu}"))
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(markerLocation))
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(markerLocation, 10f))
 
+                mMap.setOnMarkerClickListener {
+                    showBottomSheet(it.title.toString(), it.snippet.toString())
+                    false
+                }
             }
         }
-
     }
+
+    private fun showBottomSheet(title :String, desc: String) {
+        val sheet = BottomSheetDialog(requireContext())
+        sheet.setContentView(R.layout.bottom_sheet)
+
+        val tvTitle = sheet.findViewById<TextView>(R.id.tv_title)
+        val tvDesc = sheet.findViewById<TextView>(R.id.tv_desc)
+
+        tvTitle?.text = title
+        tvDesc?.text = desc
+
+        if (!sheet.isShowing){
+            sheet.show()
+        }
+    }
+
 }
