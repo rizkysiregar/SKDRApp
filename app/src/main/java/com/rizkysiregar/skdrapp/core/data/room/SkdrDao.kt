@@ -24,6 +24,10 @@ interface SkdrDao {
     @Query("SELECT * FROM data_penyakit")
     fun getAllDataPenyakit(): LiveData<List<DataPenyakitEntity>>
 
+    // get data based on namaDaerah
+    @Query("SELECT * FROM skdr WHERE nama_desa LIKE :namaDesa ORDER BY periode_minggu ASC")
+    fun getAllDataByNamaDesa(namaDesa: String): LiveData<List<SkdrEntity>>
+
     // insert data to table dataPenyakit
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertDataPenyakit(dataPenyakit: DataPenyakitEntity)
@@ -37,5 +41,7 @@ interface SkdrDao {
 
     @Delete
     fun deleteDataSkdr(skdrEntity: SkdrEntity)
+
+
 
 }

@@ -8,5 +8,6 @@ class SkdrInteractor(private val skdrRepository: ISkdrRepository): SkdrUseCase {
     override fun getAllData(): LiveData<List<Skdr>> = skdrRepository.getAllData()
     override fun insertNewData(skdr: Skdr) = skdrRepository.insertData(skdr)
     override fun getAllDataByPeriodic(periodic: Int) = skdrRepository.getAllDataByPeriodic(periodic)
+    override fun getAllDataByNamaDesa(namaDesa: String): LiveData<List<Skdr>> = skdrRepository.getAllDataByNamaDesa(namaDesa)
     override fun deleteData(skdr: Skdr) = skdrRepository.deleteData(skdr)
 }

@@ -7,5 +7,6 @@ interface SkdrUseCase {
     fun getAllData(): LiveData<List<Skdr>>
     fun insertNewData(skdr: Skdr)
     fun getAllDataByPeriodic(periodic: Int): LiveData<List<Skdr>>
+    fun getAllDataByNamaDesa(namaDesa: String): LiveData<List<Skdr>>
     fun deleteData(skdr:Skdr)
 }

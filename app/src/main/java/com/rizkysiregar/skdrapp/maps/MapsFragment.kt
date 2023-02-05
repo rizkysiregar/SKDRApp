@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -17,6 +19,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.rizkysiregar.skdrapp.R
 import com.rizkysiregar.skdrapp.core.domain.model.Skdr
+import com.rizkysiregar.skdrapp.core.ui.SkdrAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.min
 
@@ -39,6 +42,7 @@ class MapsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
+
     }
 
     private fun showMarker(mMap: GoogleMap){
@@ -63,22 +67,28 @@ class MapsFragment : Fragment() {
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(markerLocation, 10f))
 
                 mMap.setOnMarkerClickListener {
-                    showBottomSheet(it.title.toString(), it.snippet.toString())
+                    showBottomSheet(it.title.toString())
                     false
                 }
             }
         }
     }
 
-    private fun showBottomSheet(title :String, desc: String) {
+    private fun showBottomSheet(title :String) {
         val sheet = BottomSheetDialog(requireContext())
         sheet.setContentView(R.layout.bottom_sheet)
+        mapsViewModel.setNamaDesa(title)
 
-        val tvTitle = sheet.findViewById<TextView>(R.id.tv_title)
-        val tvDesc = sheet.findViewById<TextView>(R.id.tv_desc)
+    // recycler view init
+        val rv = sheet.findViewById<RecyclerView>(R.id.rv_list_periode_mingguan)
+        rv?.setHasFixedSize(true)
+        rv?.layoutManager = LinearLayoutManager(requireContext())
+        val skdrAdapter = SkdrAdapter()
+        rv?.adapter = skdrAdapter
 
-        tvTitle?.text = title
-        tvDesc?.text = desc
+        mapsViewModel.skdr.observe(this){
+            skdrAdapter.setData(it)
+        }
 
         if (!sheet.isShowing){
             sheet.show()
