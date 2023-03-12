@@ -42,6 +42,7 @@ interface SkdrDao {
     @Delete
     fun deleteDataSkdr(skdrEntity: SkdrEntity)
 
-
+    @Query("DELETE FROM skdr")
+    fun deleteAllDataSkdr()
 
 }

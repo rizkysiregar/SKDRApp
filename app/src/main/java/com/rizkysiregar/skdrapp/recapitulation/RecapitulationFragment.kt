@@ -87,6 +87,13 @@ class RecapitulationFragment : Fragment() {
 
         recapitulationViewModel.skdr.observe(requireActivity()) {
             skdrAdapter.setData(it)
+
+            if (it.isNullOrEmpty()){
+                binding.tvDataEmpty.visibility = View.VISIBLE
+            }else{
+                binding.tvDataEmpty.visibility = View.GONE
+            }
+
             sumSameData(it).also { result ->
                 sbWA.clear()
                 sbSMS.clear()
@@ -120,14 +127,18 @@ class RecapitulationFragment : Fragment() {
     }
 
     private fun sendWA(sb: String, number: String){
-        startActivity(
-            Intent(
-                Intent.ACTION_VIEW,
-                Uri.parse(
-                    "https://api.whatsapp.com/send?phone=+$number&text="+URLEncoder.encode(sb, "UTF-8")
+        try {
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(
+                        "https://api.whatsapp.com/send?phone=+$number&text="+URLEncoder.encode(sb, "UTF-8")
+                    )
                 )
             )
-        )
+        }catch(e: Exception){
+            Toast.makeText(requireContext(), "Aplikasi WhatsApp Belum Terinstall", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun sendSms(message: String, phone: String){
@@ -138,7 +149,11 @@ class RecapitulationFragment : Fragment() {
             putExtra("address", "+$phone")
             putExtra("sms_body", message)
         }
-        startActivity(intent)
+        try {
+            startActivity(intent)
+        }catch(e: Exception){
+            Toast.makeText(requireContext(), "Aplikasi SMS Belum Terinstal",Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun sumSameData(data : List<Skdr>): List<Skdr> {

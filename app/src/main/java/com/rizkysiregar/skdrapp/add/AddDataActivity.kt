@@ -1,6 +1,7 @@
 package com.rizkysiregar.skdrapp.add
 
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.AdapterView
 
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -56,7 +58,6 @@ class AddDataActivity : AppCompatActivity() {
             binding.spMinggu.adapter = it
         }
 
-
         // insert data
         binding.btnSubmit.setOnClickListener {
             setInsertData()
@@ -68,6 +69,11 @@ class AddDataActivity : AppCompatActivity() {
         recyclerView.setHasFixedSize(true)
         initAction()
         showRecyclerView()
+
+        // delete dialog
+        binding.fabDeleteAll.setOnClickListener {
+            deleteAllData()
+        }
     }
 
     private fun setInsertData(){
@@ -116,7 +122,6 @@ class AddDataActivity : AppCompatActivity() {
         }
     }
 
-
     private fun showRecyclerView(){
         val skdrAdapter = SkdrAdapter()
         addViewModel.getAllData.observe(this){
@@ -150,6 +155,36 @@ class AddDataActivity : AppCompatActivity() {
         })
         itemTouchHelper.attachToRecyclerView(binding.rvTambahData)
     }
+
+    private fun deleteAllData(){
+        val positiveButtonClick = { _: DialogInterface, _: Int ->
+            try {
+                addViewModel.deleteAllDataSkdr()
+                Toast.makeText(applicationContext,
+                    "Seluruh Data Berhasil di Hapus", Toast.LENGTH_SHORT
+                ).show()
+            }catch(e: Exception){
+                Toast.makeText(applicationContext,
+                    "$e", Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+        val negativeButtonClick = { _: DialogInterface, _: Int ->
+            Toast.makeText(applicationContext,
+                "Cancel", Toast.LENGTH_SHORT
+            ).show()
+        }
+
+        val builder = AlertDialog.Builder(this)
+        with(builder){
+            setTitle("Peringatan!!!")
+            setMessage("Anda Ingin Menghapus seluruh data ?")
+            setPositiveButton("Hapus Seluruh Data", DialogInterface.OnClickListener(function = positiveButtonClick))
+            setNegativeButton("Cancel", DialogInterface.OnClickListener(negativeButtonClick))
+            show()
+        }
+    }
+
 }
 
 

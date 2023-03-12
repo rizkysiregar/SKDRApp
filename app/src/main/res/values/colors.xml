@@ -10,9 +10,5 @@
     <color name="yellow">#FFEB3B</color>
     <color name="red">#F44336</color>
     <color name="old_green">#03C988</color>
-
-
-    // pie chart color
-
-
+    <color name="white_faded">#F2F6F5</color>
 </resources>
