@@ -25,11 +25,17 @@ import kotlin.math.min
 
 class MapsFragment : Fragment() {
 
+    /*
+    * viewModel delegate by dependency Inject with Koin
+    * init callback for maps on ready and call function
+    * show marker and pass to parameter
+    **/
     private val mapsViewModel : MapsViewModel by viewModel()
     private val callback = OnMapReadyCallback { googleMap ->
         showMarker(googleMap)
     }
 
+    // obtain google maps interface
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -38,21 +44,28 @@ class MapsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_maps, container, false)
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
-
     }
 
+    // mapping data skdr with google maps marker
     private fun showMarker(mMap: GoogleMap){
+        // setting map UI setting
         mMap.uiSettings.isZoomControlsEnabled = true
         mMap.uiSettings.isZoomGesturesEnabled = true
         mMap.uiSettings.isIndoorLevelPickerEnabled = true
         mMap.uiSettings.isCompassEnabled = true
         mMap.uiSettings.isMapToolbarEnabled = true
+
+        // default marker value
         var markerLocation = LatLng(-5.244242361783416, 105.22078387730636)
+
+        // call mapViewModel to get list data from db
         mapsViewModel.getAllData.observe(this){ list ->
+            // iteration using foreach to get all indexes
             list.forEach { map ->
                 when(map.namaDesa){
                     "Natar" -> markerLocation = LatLng(-5.241846069680059, 105.24069875772317)
@@ -62,10 +75,12 @@ class MapsFragment : Fragment() {
                     "Merak Batin" -> markerLocation = LatLng(-5.313570088532476, 105.1968635083637)
                 }
 
+                // pass all property
                 mMap.addMarker(MarkerOptions().position(markerLocation).title(map.namaDesa).snippet("Kode: ${map.kodePenyakit}, Kasus: ${map.jumlahPenderita}, Minggu Ke: ${map.periodeMinggu}"))
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(markerLocation))
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(markerLocation, 10f))
 
+                // on marker click show bottom sheet to display recycler view
                 mMap.setOnMarkerClickListener {
                     showBottomSheet(it.title.toString())
                     false
@@ -94,5 +109,4 @@ class MapsFragment : Fragment() {
             sheet.show()
         }
     }
-
 }
