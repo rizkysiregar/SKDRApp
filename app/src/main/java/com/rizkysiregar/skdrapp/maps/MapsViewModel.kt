@@ -31,5 +31,4 @@ class MapsViewModel(skdrUseCase: SkdrUseCase): ViewModel() {
         }
         _getDataByNamaDesa.value = namaDesa
     }
-
 }

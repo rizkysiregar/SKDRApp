@@ -23,8 +23,11 @@ class RecapitulationFragment : Fragment() {
     // binding delegate
     private var _binding: FragmentRecapitulationBinding? = null
     private val binding get() = _binding!!
+
+    // init & assign recapitulationViewModel with Dependency Injection by Koin
     private val recapitulationViewModel: RecapitulationViewModel by viewModel()
 
+    // inflate interface for parent view
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,7 +35,6 @@ class RecapitulationFragment : Fragment() {
         _binding = FragmentRecapitulationBinding.inflate(inflater, container, false)
         return binding.root
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -82,21 +84,29 @@ class RecapitulationFragment : Fragment() {
             recapitulationViewModel.setSkdrPeriodic(periodic)
         }
 
+        // string builder for text that will be obtain weekly report code
+        // must be mutable so that value cannot replace but open for modification
         val sbWA = StringBuilder()
         val sbSMS = StringBuilder()
 
+        // observe variable skdr from view model to get data with live data
         recapitulationViewModel.skdr.observe(requireActivity()) {
             skdrAdapter.setData(it)
 
+            // null check NullPointerException
             if (it.isNullOrEmpty()){
                 binding.tvDataEmpty.visibility = View.VISIBLE
             }else{
                 binding.tvDataEmpty.visibility = View.GONE
             }
 
+            // build and assign value to string builder for weekly report code
             recapitulationViewModel.sumSameData(it).also { result ->
+                // clear up
                 sbWA.clear()
                 sbSMS.clear()
+
+                // string concat
                 sbWA.append("SKDR ${binding.spMingguRecap.selectedItem}#${binding.spTahun.selectedItem}")
                 sbSMS.append("MANUAL#${binding.spMingguRecap.selectedItem}")
                 for (skdr in result){
@@ -104,8 +114,12 @@ class RecapitulationFragment : Fragment() {
                     sbSMS.append("#${skdr.kodePenyakit}${skdr.jumlahPenderita}")
                 }
             }
+            // assign value
             binding.tvFormatLaporan.text = sbWA
         }
+
+        // null pointer check for totalJumlahKunjungan for
+        // WhatsApp button purpose
         binding.btnWa.setOnClickListener {
             if (binding.edtTotalKunjungan.text.isEmpty()){
                 Toast.makeText(requireActivity(),"Ups..Total Kunjungan masih kosong",Toast.LENGTH_SHORT).show()
@@ -115,6 +129,9 @@ class RecapitulationFragment : Fragment() {
                 sendWA(sbWA.toString(),number)
             }
         }
+
+        // null pointer check for totalJumlahKunjungan for
+        // Sms (Short Message Service) button purpose
         binding.btnSms.setOnClickListener {
             if (binding.edtTotalKunjungan.text.isEmpty()){
                 Toast.makeText(requireActivity(),"Ups..Total Kunjungan masih kosong",Toast.LENGTH_SHORT).show()
@@ -126,6 +143,7 @@ class RecapitulationFragment : Fragment() {
         }
     }
 
+    // start Intent with that obtain weekly report code in whatsapp text box
     private fun sendWA(sb: String, number: String){
         try {
             startActivity(
@@ -141,6 +159,7 @@ class RecapitulationFragment : Fragment() {
         }
     }
 
+    // start Intent with that obtain weekly report code in SMS text box
     private fun sendSms(message: String, phone: String){
         val uri = Uri.parse("smsto:+$phone")
         val intent = Intent(Intent.ACTION_SENDTO, uri)
@@ -149,11 +168,14 @@ class RecapitulationFragment : Fragment() {
             putExtra("address", "+$phone")
             putExtra("sms_body", message)
         }
+
+        /*
+        *   use try and catch for avoid from force close error
+        * */
         try {
             startActivity(intent)
         }catch(e: Exception){
             Toast.makeText(requireContext(), "Aplikasi SMS Belum Terinstal",Toast.LENGTH_SHORT).show()
         }
     }
-
 }
