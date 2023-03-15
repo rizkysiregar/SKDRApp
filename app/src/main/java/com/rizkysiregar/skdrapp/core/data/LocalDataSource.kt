@@ -5,6 +5,11 @@ import com.rizkysiregar.skdrapp.core.data.entity.DataPenyakitEntity
 import com.rizkysiregar.skdrapp.core.data.entity.SkdrEntity
 import com.rizkysiregar.skdrapp.core.data.room.SkdrDao
 
+/*
+* provide data from db with skdrDao as helper on constructor
+* to access all query in skrDao and pass value in SkdrRepository
+* */
+
 class LocalDataSource constructor(private val skdrDao: SkdrDao) {
     fun getAllData(): LiveData<List<SkdrEntity>> = skdrDao.getAllData()
     fun insertSkdr(skdrEntity: SkdrEntity) = skdrDao.insertSkdr(skdrEntity)
