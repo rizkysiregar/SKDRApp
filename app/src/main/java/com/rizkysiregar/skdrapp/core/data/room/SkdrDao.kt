@@ -32,16 +32,19 @@ interface SkdrDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertDataPenyakit(dataPenyakit: DataPenyakitEntity)
 
-   // getDataByPeriode
+   // getDataByPeriod
     @Query("SELECT * FROM skdr WHERE periode_minggu = :periode ORDER BY kode_penyakit ASC")
    fun getDataByPeriode(periode: Int): LiveData<List<SkdrEntity>>
 
+   // delete data type of disease
     @Delete
     fun deleteDataPenyakit(data: DataPenyakitEntity)
 
+    // delete data skdr which entered by surveillance
     @Delete
     fun deleteDataSkdr(skdrEntity: SkdrEntity)
 
+    // delete all data skdr
     @Query("DELETE FROM skdr")
     fun deleteAllDataSkdr()
 
