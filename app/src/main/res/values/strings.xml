@@ -20,6 +20,11 @@
     <string name="tools_jumlah">12 Orang</string>
     <string name="total_kunjungan">Total Kunjungan:</string>
     <string name="masukan_total_kunjungan">Masukan total kunjungan</string>
+    <string name="alert">Peringatan!!!</string>
+    <string name="alert_message">Anda Ingin Menghapus seluruh data ?</string>
+    <string name="alert_yes">Hapus Seluruh Data</string>
+    <string name="alert_no">Cancel</string>
+    <string name="alert_success">Seluruh Data Berhasil di Hapus</string>
 
 
     <string name="started_sub_title">Selamat Datang, Silahkan Login</string>

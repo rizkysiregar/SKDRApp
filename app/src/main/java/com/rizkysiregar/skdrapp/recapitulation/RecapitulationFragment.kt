@@ -94,7 +94,7 @@ class RecapitulationFragment : Fragment() {
                 binding.tvDataEmpty.visibility = View.GONE
             }
 
-            sumSameData(it).also { result ->
+            recapitulationViewModel.sumSameData(it).also { result ->
                 sbWA.clear()
                 sbSMS.clear()
                 sbWA.append("SKDR ${binding.spMingguRecap.selectedItem}#${binding.spTahun.selectedItem}")
@@ -156,15 +156,4 @@ class RecapitulationFragment : Fragment() {
         }
     }
 
-    private fun sumSameData(data : List<Skdr>): List<Skdr> {
-        val sum = (data)
-            .groupBy { it.kodePenyakit }
-            .values
-            .map {
-                it.reduce{
-                    acc, item -> Skdr(0,item.namaDesa,item.periodeMinggu,item.namaPenyakit,item.kodePenyakit,acc.jumlahPenderita + item.jumlahPenderita)
-                }
-            }
-        return sum
-    }
 }

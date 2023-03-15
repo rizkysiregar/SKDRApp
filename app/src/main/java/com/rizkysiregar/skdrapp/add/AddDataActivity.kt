@@ -34,12 +34,15 @@ class AddDataActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // assign binding layout
         binding = ActivityAddDataBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // populate namaPenyakit from db
         fillSpinner()
 
+        // array adapter for spinner nama desa
         ArrayAdapter.createFromResource(
             this,
             R.array.desa_array,
@@ -49,6 +52,7 @@ class AddDataActivity : AppCompatActivity() {
             binding.spDesa.adapter = it
         }
 
+        // array adapter for spinner nama desa
         ArrayAdapter.createFromResource(
             this,
             R.array.minngu_array,
@@ -58,7 +62,7 @@ class AddDataActivity : AppCompatActivity() {
             binding.spMinggu.adapter = it
         }
 
-        // insert data
+        // event on button insert onClick then call setInsertData Function
         binding.btnSubmit.setOnClickListener {
             setInsertData()
         }
@@ -70,12 +74,13 @@ class AddDataActivity : AppCompatActivity() {
         initAction()
         showRecyclerView()
 
-        // delete dialog
+        // event on floating action button on click to delete all data in one time
         binding.fabDeleteAll.setOnClickListener {
             deleteAllData()
         }
     }
 
+    // function for insertData to db on call addViewModel.insertData and pass parameter
     private fun setInsertData(){
         val namaDesa = binding.spDesa.selectedItem.toString()
         val periodeMinggu = binding.spMinggu.selectedItem.toString()
@@ -89,12 +94,14 @@ class AddDataActivity : AppCompatActivity() {
                 val skdr = Skdr(0,namaDesa,periodeMinggu.toInt(),namaPenyakit,kodePenyakit,jumlahPenderita.toInt())
                 addViewModel.insertData(skdr)
                 Toast.makeText(this,"Success", Toast.LENGTH_SHORT).show()
+                binding.edtJumlahPasien.text.clear()
             }
         }catch(e: Exception){
             Toast.makeText(this,"Error: $e", Toast.LENGTH_LONG).show()
         }
     }
 
+    // fill spinner data from db and get kodePenyakit by namaPenyakit
     private fun fillSpinner(){
         try{
             val dataNamaPenyakit: ArrayList<String> = ArrayList()
@@ -122,6 +129,11 @@ class AddDataActivity : AppCompatActivity() {
         }
     }
 
+    /*
+    function for obtain skdrAdapter.setData with
+    value form addViewModel.getAllData and pass it to
+    recyclerview
+    */
     private fun showRecyclerView(){
         val skdrAdapter = SkdrAdapter()
         addViewModel.getAllData.observe(this){
@@ -130,6 +142,12 @@ class AddDataActivity : AppCompatActivity() {
         recyclerView.adapter = skdrAdapter
     }
 
+
+    /*
+    function for create gesture when recycler view
+    hit by on swipe event and call addViewModel.deleteData
+    and that will be delete data by id
+     */
     private fun initAction(){
         val itemTouchHelper = ItemTouchHelper(object: ItemTouchHelper.Callback(){
             override fun getMovementFlags(
@@ -156,12 +174,18 @@ class AddDataActivity : AppCompatActivity() {
         itemTouchHelper.attachToRecyclerView(binding.rvTambahData)
     }
 
+
+    /*
+        function build to call addViewModel.deleteAllData
+        and will be call when FAB hit by on click listener
+    */
     private fun deleteAllData(){
         val positiveButtonClick = { _: DialogInterface, _: Int ->
+            // try and catch exception to avoid force close error
             try {
                 addViewModel.deleteAllDataSkdr()
                 Toast.makeText(applicationContext,
-                    "Seluruh Data Berhasil di Hapus", Toast.LENGTH_SHORT
+                    R.string.alert_success, Toast.LENGTH_SHORT
                 ).show()
             }catch(e: Exception){
                 Toast.makeText(applicationContext,
@@ -169,18 +193,21 @@ class AddDataActivity : AppCompatActivity() {
                 ).show()
             }
         }
+
+        // when alert is canceled
         val negativeButtonClick = { _: DialogInterface, _: Int ->
             Toast.makeText(applicationContext,
-                "Cancel", Toast.LENGTH_SHORT
+                R.string.alert_no, Toast.LENGTH_SHORT
             ).show()
         }
 
+        // show alert dialog to prevent unexpected event
         val builder = AlertDialog.Builder(this)
         with(builder){
-            setTitle("Peringatan!!!")
-            setMessage("Anda Ingin Menghapus seluruh data ?")
-            setPositiveButton("Hapus Seluruh Data", DialogInterface.OnClickListener(function = positiveButtonClick))
-            setNegativeButton("Cancel", DialogInterface.OnClickListener(negativeButtonClick))
+            setTitle(R.string.alert)
+            setMessage(R.string.alert_message)
+            setPositiveButton(R.string.alert_yes, DialogInterface.OnClickListener(function = positiveButtonClick))
+            setNegativeButton(R.string.alert_no, DialogInterface.OnClickListener(negativeButtonClick))
             show()
         }
     }

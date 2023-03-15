@@ -22,4 +22,17 @@ class RecapitulationViewModel(skdrUseCase: SkdrUseCase): ViewModel() {
         }
         _skdrPeriodic.value = periodic
     }
+
+     fun sumSameData(data : List<Skdr>): List<Skdr> {
+        val sum = (data)
+            .groupBy { it.kodePenyakit }
+            .values
+            .map {
+                it.reduce{
+                        acc, item -> Skdr(0,item.namaDesa,item.periodeMinggu,item.namaPenyakit,item.kodePenyakit,acc.jumlahPenderita + item.jumlahPenderita)
+                }
+            }
+        return sum
+    }
+
 }
