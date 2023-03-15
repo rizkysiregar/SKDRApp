@@ -15,6 +15,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+        // handler to make fake time load to show animation and app logo
         Handler(Looper.getMainLooper()).postDelayed({
             startActivity((Intent(this, MainActivity::class.java)))
             finish()
