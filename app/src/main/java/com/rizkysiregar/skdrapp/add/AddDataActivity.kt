@@ -22,7 +22,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AddDataActivity : AppCompatActivity() {
 
-    // view model
+    // view model | parameter inject by Koin in folder core/id/AppModule
     private val addViewModel : AddViewModel by viewModel()
 
     // recycler view
