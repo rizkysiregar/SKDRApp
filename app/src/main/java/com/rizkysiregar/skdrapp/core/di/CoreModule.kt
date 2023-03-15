@@ -12,16 +12,19 @@ import org.koin.dsl.module
 
 val databaseModule = module {
     factory { get<SkdrDatabase>().skdrDao() }
+    // single to call SkdrDatabase just only one time
+    // its to avoid memory leak 
     single {
         Room.databaseBuilder(
             androidContext(),
-            SkdrDatabase::class.java, "Skdr.db"
+            SkdrDatabase::class.java, "Skdr.db" // db name
         ).fallbackToDestructiveMigration()
-            .createFromAsset("Skdr_db.db")
+            .createFromAsset("Skdr_db.db") // from asset
             .build()
     }
 }
 
+// call and pass value for  Interface dan class who override it
 val repositoryModule = module {
     single { LocalDataSource(get()) }
     factory { AppExecutors() }
