@@ -4,6 +4,13 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/* separation of concern or separation of model
+*
+* this is implementation that framework used in outside of UI Layer
+* for reach Independent of framework
+* Library SQLite Room
+*  */
+
 @Entity(tableName = "data_penyakit")
 data class DataPenyakitEntity (
     @PrimaryKey(autoGenerate = false)
