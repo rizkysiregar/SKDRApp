@@ -23,8 +23,14 @@ class HomeViewModel(skdrUseCase: SkdrUseCase): ViewModel() {
         skdrUseCase.getAllDataByPeriodic(periode)
     }
 
+    /*
+    *
+    * convert skdr to LiveData state
+    * for configuration change purpose
+    * */
     val skdr: LiveData<List<Skdr>> = _skdr
 
+    // function to get periodic value from user (UI)
     fun setSkdrPeriodic(periodic: Int){
         if (periodic == _skdrPeriodic.value){
             return
@@ -32,6 +38,7 @@ class HomeViewModel(skdrUseCase: SkdrUseCase): ViewModel() {
         _skdrPeriodic.value = periodic
     }
 
+    // show char as illustration
      fun showChart(pieChart: PieChart, listData: List<Skdr>){
         val arrJumlahPasien: ArrayList<PieEntry> = ArrayList()
         listData.forEach {
@@ -119,6 +126,4 @@ class HomeViewModel(skdrUseCase: SkdrUseCase): ViewModel() {
         // loading chart
         pieChart.invalidate()
     }
-
-
 }
