@@ -12,11 +12,16 @@ import com.rizkysiregar.skdrapp.setting.SettingViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
+// module obtain all useCase file in project and also provide argument for parameter
 val useCaseModule = module {
     factory <SkdrUseCase>{ SkdrInteractor(get()) }
     factory <DataPenyakitUseCase>{ DataPenyakitInteractor(get()) }
 }
 
+/*
+    viewModelModule to provide argument for viewModel by get() method by inject
+    call in MyApplication file for koinStart
+*/
 val viewModelModule = module {
     viewModel {AddViewModel(get(), get())}
     viewModel { HomeViewModel(get()) }
