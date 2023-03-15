@@ -65,11 +65,14 @@ class HomeFragment : Fragment() {
 //            showChart(pieChart,it)
         }
 
+        // call setSkdrPeriodic for get data ordered by weekly
         homeViewModel.setSkdrPeriodic(1)
         binding.btnCariPeriodik.setOnClickListener {
             var periodik = binding.spPeriodik.selectedItem.toString().toInt()
             homeViewModel.setSkdrPeriodic(periodik)
         }
+
+        // pass value to recycler view adapter and manage null exception
         homeViewModel.skdr.observe(requireActivity()){
             skdrAdapter.setData(it)
             if (it.isNullOrEmpty()){
@@ -80,9 +83,10 @@ class HomeFragment : Fragment() {
         }
     }
 
+    // when fragment state is onDestroy then binding will be cleared
+    // to prevent memory leak
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }
