@@ -9,6 +9,7 @@ import androidx.room.PrimaryKey
 * this is implementation that framework used in outside of UI Layer
 * for reach Independent of framework
 * Library SQLite Room
+* model data | for data penyakit
 *  */
 
 @Entity(tableName = "data_penyakit")
